@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载 2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的） 3， 设置方法：选择我的电脑-&amp;gt;属性-&amp;gt;高级系统设置-&amp;gt;环境变量-&amp;gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。（1）变量名：CATALINA_BASE变量值：你的Tomc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat安装和配置教程">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载 2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的） 3， 设置方法：选择我的电脑-&amp;gt;属性-&amp;gt;高级系统设置-&amp;gt;环境变量-&amp;gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。（1）变量名：CATALINA_BASE变量值：你的Tomc">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C6.png">
+<meta property="og:updated_time" content="2019-10-30T10:54:53.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B&#x2F;D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/Tomcat安装和配置教程/"/>
+
+
+
+
+
+  <title>Tomcat安装和配置教程 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tomcat安装和配置教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T18:12:07+08:00">
+                2019-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1，首先第一步，我们进入官网-进行下载，选择Download下你要安装的版本进行下载"><a href="#1，首先第一步，我们进入官网-进行下载，选择Download下你要安装的版本进行下载" class="headerlink" title="1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载"></a>1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载</h4><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C1.png" alt></p>
+<h4 id="2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）"><a href="#2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）" class="headerlink" title="2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）"></a>2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）</h4><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C2.png" alt></p>
+<h4 id="3，-设置方法：选择我的电脑-gt-属性-gt-高级系统设置-gt-环境变量-gt-系统变量下选择”新建”-如下图所示：其中变量值为：Tomcat的安装路径。"><a href="#3，-设置方法：选择我的电脑-gt-属性-gt-高级系统设置-gt-环境变量-gt-系统变量下选择”新建”-如下图所示：其中变量值为：Tomcat的安装路径。" class="headerlink" title="3， 设置方法：选择我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。"></a>3， 设置方法：选择我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。</h4><h5 id="（1）变量名：CATALINA-BASE"><a href="#（1）变量名：CATALINA-BASE" class="headerlink" title="（1）变量名：CATALINA_BASE"></a>（1）变量名：CATALINA_BASE</h5><h5 id="变量值：你的Tomcat的安装地址"><a href="#变量值：你的Tomcat的安装地址" class="headerlink" title="变量值：你的Tomcat的安装地址"></a>变量值：你的Tomcat的安装地址</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C3.png" alt></p>
+<h5 id="（2）变量名：CATALINA-HOME"><a href="#（2）变量名：CATALINA-HOME" class="headerlink" title="（2）变量名：CATALINA_HOME"></a>（2）变量名：CATALINA_HOME</h5><h5 id="变量值：你的Tomcat的安装地址-1"><a href="#变量值：你的Tomcat的安装地址-1" class="headerlink" title="变量值：你的Tomcat的安装地址"></a>变量值：你的Tomcat的安装地址</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C4.png" alt></p>
+<h5 id="（3）变量名path（不需要新建，找到系统变量path编辑即可）"><a href="#（3）变量名path（不需要新建，找到系统变量path编辑即可）" class="headerlink" title="（3）变量名path（不需要新建，找到系统变量path编辑即可）"></a>（3）变量名path（不需要新建，找到系统变量path编辑即可）</h5><h5 id="变量值：在path的变量值最后面添加-CATALINA-HOME-bin"><a href="#变量值：在path的变量值最后面添加-CATALINA-HOME-bin" class="headerlink" title="变量值：在path的变量值最后面添加%CATALINA_HOME%\bin"></a>变量值：在path的变量值最后面添加%CATALINA_HOME%\bin</h5><h5 id><a href="#" class="headerlink" title></a><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C5.png" alt></h5><h4 id="4，最后，我们打开cmd，启动Tomcat就可以了"><a href="#4，最后，我们打开cmd，启动Tomcat就可以了" class="headerlink" title="4，最后，我们打开cmd，启动Tomcat就可以了"></a>4，最后，我们打开cmd，启动Tomcat就可以了</h4><h5 id="输入startup，看到以下形式就可以了"><a href="#输入startup，看到以下形式就可以了" class="headerlink" title="输入startup，看到以下形式就可以了"></a>输入startup，看到以下形式就可以了</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C6.png" alt></p>
+<h4 id="好了，Tomcat启动成功了，快去写你的项目吧。"><a href="#好了，Tomcat启动成功了，快去写你的项目吧。" class="headerlink" title="好了，Tomcat启动成功了，快去写你的项目吧。"></a>好了，Tomcat启动成功了，快去写你的项目吧。</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="Eclipse连接MySQL数据库">
+                <i class="fa fa-chevron-left"></i> Eclipse连接MySQL数据库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/" rel="prev" title="初识JSP">
+                初识JSP <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，首先第一步，我们进入官网-进行下载，选择Download下你要安装的版本进行下载"><span class="nav-number">1.</span> <span class="nav-text">1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）"><span class="nav-number">2.</span> <span class="nav-text">2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，-设置方法：选择我的电脑-gt-属性-gt-高级系统设置-gt-环境变量-gt-系统变量下选择”新建”-如下图所示：其中变量值为：Tomcat的安装路径。"><span class="nav-number">3.</span> <span class="nav-text">3， 设置方法：选择我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）变量名：CATALINA-BASE"><span class="nav-number">3.1.</span> <span class="nav-text">（1）变量名：CATALINA_BASE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量值：你的Tomcat的安装地址"><span class="nav-number">3.2.</span> <span class="nav-text">变量值：你的Tomcat的安装地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）变量名：CATALINA-HOME"><span class="nav-number">3.3.</span> <span class="nav-text">（2）变量名：CATALINA_HOME</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量值：你的Tomcat的安装地址-1"><span class="nav-number">3.4.</span> <span class="nav-text">变量值：你的Tomcat的安装地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（3）变量名path（不需要新建，找到系统变量path编辑即可）"><span class="nav-number">3.5.</span> <span class="nav-text">（3）变量名path（不需要新建，找到系统变量path编辑即可）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量值：在path的变量值最后面添加-CATALINA-HOME-bin"><span class="nav-number">3.6.</span> <span class="nav-text">变量值：在path的变量值最后面添加%CATALINA_HOME%\bin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#null"><span class="nav-number">3.7.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4，最后，我们打开cmd，启动Tomcat就可以了"><span class="nav-number">4.</span> <span class="nav-text">4，最后，我们打开cmd，启动Tomcat就可以了</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#输入startup，看到以下形式就可以了"><span class="nav-number">4.1.</span> <span class="nav-text">输入startup，看到以下形式就可以了</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#好了，Tomcat启动成功了，快去写你的项目吧。"><span class="nav-number">5.</span> <span class="nav-text">好了，Tomcat启动成功了，快去写你的项目吧。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

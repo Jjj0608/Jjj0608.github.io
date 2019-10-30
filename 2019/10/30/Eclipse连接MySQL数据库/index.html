@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1，首先，我们应创建一个是数据库：1234567mysql&amp;gt;CREATE   DATABASE test;   &#x2F;&#x2F;创建一个数据库mysql&amp;gt;use  test;  &#x2F;&#x2F;指定test为当前要操作的数据库mysql&amp;gt;CREATE  TABLE  user (name VARCHAR(20),password VARCHAR(20));   &#x2F;&#x2F;创建一个表user，设置两个字段。my">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse连接MySQL数据库">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1，首先，我们应创建一个是数据库：1234567mysql&amp;gt;CREATE   DATABASE test;   &#x2F;&#x2F;创建一个数据库mysql&amp;gt;use  test;  &#x2F;&#x2F;指定test为当前要操作的数据库mysql&amp;gt;CREATE  TABLE  user (name VARCHAR(20),password VARCHAR(20));   &#x2F;&#x2F;创建一个表user，设置两个字段。my">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821403290.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821410457.png">
+<meta property="og:updated_time" content="2019-10-30T10:10:50.934Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821403290.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/Eclipse连接MySQL数据库/"/>
+
+
+
+
+
+  <title>Eclipse连接MySQL数据库 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Eclipse连接MySQL数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T18:02:31+08:00">
+                2019-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1，首先，我们应创建一个是数据库："><a href="#1，首先，我们应创建一个是数据库：" class="headerlink" title="1，首先，我们应创建一个是数据库："></a>1，首先，我们应创建一个是数据库：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;CREATE   DATABASE test;   //创建一个数据库</span><br><span class="line"></span><br><span class="line">mysql&gt;use  test;  //指定test为当前要操作的数据库</span><br><span class="line"></span><br><span class="line">mysql&gt;CREATE  TABLE  user (name VARCHAR(20),password VARCHAR(20));   //创建一个表user，设置两个字段。</span><br><span class="line"></span><br><span class="line">mysql&gt;INSERT  INTO  user  VALUES(&apos;huzhiheng&apos;,&apos;123456&apos;); //插入一条数据到表中</span><br></pre></td></tr></table></figure>
+
+<h4 id="2，打开Eclipse-，创建一个项目（My）"><a href="#2，打开Eclipse-，创建一个项目（My）" class="headerlink" title="2，打开Eclipse ，创建一个项目（My）"></a>2，打开Eclipse ，创建一个项目（My）</h4><h5 id="操作：右键点击my—-gt-build-Path—-gt-add-external-Archiver…选择jdbc驱动，点击确定。"><a href="#操作：右键点击my—-gt-build-Path—-gt-add-external-Archiver…选择jdbc驱动，点击确定。" class="headerlink" title="操作：右键点击my—&gt;build Path—&gt;add external Archiver…选择jdbc驱动，点击确定。"></a>操作：右键点击my—&gt;build Path—&gt;add external Archiver…选择jdbc驱动，点击确定。</h5><p><img src="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821403290.png" alt></p>
+<h5 id="我的项目列表："><a href="#我的项目列表：" class="headerlink" title="我的项目列表："></a>我的项目列表：</h5><p><img src="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821410457.png" alt></p>
+<h4 id="3，驱动已经导入，下面我们来写一个程序验证一下"><a href="#3，驱动已经导入，下面我们来写一个程序验证一下" class="headerlink" title="3，驱动已经导入，下面我们来写一个程序验证一下"></a>3，驱动已经导入，下面我们来写一个程序验证一下</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line">publicclass MysqlJdbc &#123;</span><br><span class="line">  <span class="function">publicstaticvoid <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);     <span class="comment">//加载MYSQL JDBC驱动程序   </span></span><br><span class="line">     </span><br><span class="line">     System.out.println(<span class="string">"Success loading Mysql Driver!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      System.out.print(<span class="string">"Error loading Mysql Driver!"</span>);</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Connection connect = DriverManager.getConnection(</span><br><span class="line">          <span class="string">"jdbc:mysql://localhost:3306/test"</span>,<span class="string">"root"</span>,<span class="string">"198876"</span>);</span><br><span class="line">           <span class="comment">//连接URL为   jdbc:mysql//服务器地址/数据库名  ，后面的2个参数分别是登陆用户名和密码</span></span><br><span class="line"></span><br><span class="line">      System.out.println(<span class="string">"Success connect Mysql server!"</span>);</span><br><span class="line">      Statement stmt = connect.createStatement();</span><br><span class="line">      ResultSet rs = stmt.executeQuery(<span class="string">"select * from user"</span>);</span><br><span class="line">        </span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">        System.out.println(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      System.out.print(<span class="string">"get data error!"</span>);</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="点击运行程序："><a href="#点击运行程序：" class="headerlink" title="点击运行程序："></a>点击运行程序：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Success loading Mysql Driver!</span><br><span class="line"></span><br><span class="line">Success connect Mysql server!</span><br><span class="line"></span><br><span class="line">huzhiheng</span><br></pre></td></tr></table></figure>
+
+<h4 id="出现以上结果，说明连接数据库成功！"><a href="#出现以上结果，说明连接数据库成功！" class="headerlink" title="出现以上结果，说明连接数据库成功！"></a>出现以上结果，说明连接数据库成功！</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" rel="next" title="MMySQL数据库命令大全">
+                <i class="fa fa-chevron-left"></i> MMySQL数据库命令大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" rel="prev" title="Tomcat安装和配置教程">
+                Tomcat安装和配置教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，首先，我们应创建一个是数据库："><span class="nav-number">1.</span> <span class="nav-text">1，首先，我们应创建一个是数据库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，打开Eclipse-，创建一个项目（My）"><span class="nav-number">2.</span> <span class="nav-text">2，打开Eclipse ，创建一个项目（My）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作：右键点击my—-gt-build-Path—-gt-add-external-Archiver…选择jdbc驱动，点击确定。"><span class="nav-number">2.1.</span> <span class="nav-text">操作：右键点击my—&gt;build Path—&gt;add external Archiver…选择jdbc驱动，点击确定。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我的项目列表："><span class="nav-number">2.2.</span> <span class="nav-text">我的项目列表：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，驱动已经导入，下面我们来写一个程序验证一下"><span class="nav-number">3.</span> <span class="nav-text">3，驱动已经导入，下面我们来写一个程序验证一下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#点击运行程序："><span class="nav-number">3.1.</span> <span class="nav-text">点击运行程序：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#出现以上结果，说明连接数据库成功！"><span class="nav-number">4.</span> <span class="nav-text">出现以上结果，说明连接数据库成功！</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
