@@ -1,1323 +1,570 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="en">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en">
+  <meta charset="utf-8">
+  <title>jer</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="jer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识JSP">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;%E5%88%9D%E8%AF%86JSP&#x2F;index.html">
+<meta property="og:site_name" content="jer">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="d:%5Chexo%5Cblog%5Csource_posts%5C%E5%88%9D%E8%AF%86JSP%5C1.png">
+<meta property="og:updated_time" content="2019-10-30T13:46:24.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:%5Chexo%5Cblog%5Csource_posts%5C%E5%88%9D%E8%AF%86JSP%5C1.png">
 
 
+<link rel="icon" href="/img/avatar.jpg">
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
 
-
-
-  <link rel="canonical" href="http://yoursite.com/"/>
-
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-  <title>Hexo</title>
-  
-
-
-
-
-
-
-
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value="">
 </div>
 
-<nav class="site-nav">
-  
+<body>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>It&#39;s yours jie</span>
+</div>
 
-  
-    <ul id="menu" class="menu">
-      
+<div class="icon">
+    
         
-        <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+        <a title="rss" href="/atom.xml" target="_blank">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
             
-            Home
-          </a>
-        </li>
-      
+        </a>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/%E5%88%9D%E8%AF%86JSP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
         
+        <a title="github" href="https://github.com/Jjj0608" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/" itemprop="url">初识JSP</a></h1>
+    
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T18:52:12+08:00">
-                2019-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            
-          
+    
         
-      
-    </div>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
         
+    
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" itemprop="url">Tomcat安装和配置教程</a></h1>
+    
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T18:12:07+08:00">
-                2019-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <h4 id="1，首先第一步，我们进入官网-进行下载，选择Download下你要安装的版本进行下载"><a href="#1，首先第一步，我们进入官网-进行下载，选择Download下你要安装的版本进行下载" class="headerlink" title="1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载"></a>1，首先第一步，我们进入官网 进行下载，选择Download下你要安装的版本进行下载</h4><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C1.png" alt></p>
-<h4 id="2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）"><a href="#2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）" class="headerlink" title="2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）"></a>2，我们直接把下载好的Tomcat直接去解压（我这里是把Tomcat拉到了C盘解压的）</h4><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C2.png" alt></p>
-<h4 id="3，-设置方法：选择我的电脑-gt-属性-gt-高级系统设置-gt-环境变量-gt-系统变量下选择”新建”-如下图所示：其中变量值为：Tomcat的安装路径。"><a href="#3，-设置方法：选择我的电脑-gt-属性-gt-高级系统设置-gt-环境变量-gt-系统变量下选择”新建”-如下图所示：其中变量值为：Tomcat的安装路径。" class="headerlink" title="3， 设置方法：选择我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。"></a>3， 设置方法：选择我的电脑-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;系统变量下选择”新建” 如下图所示：其中变量值为：Tomcat的安装路径。</h4><h5 id="（1）变量名：CATALINA-BASE"><a href="#（1）变量名：CATALINA-BASE" class="headerlink" title="（1）变量名：CATALINA_BASE"></a>（1）变量名：CATALINA_BASE</h5><h5 id="变量值：你的Tomcat的安装地址"><a href="#变量值：你的Tomcat的安装地址" class="headerlink" title="变量值：你的Tomcat的安装地址"></a>变量值：你的Tomcat的安装地址</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C3.png" alt></p>
-<h5 id="（2）变量名：CATALINA-HOME"><a href="#（2）变量名：CATALINA-HOME" class="headerlink" title="（2）变量名：CATALINA_HOME"></a>（2）变量名：CATALINA_HOME</h5><h5 id="变量值：你的Tomcat的安装地址-1"><a href="#变量值：你的Tomcat的安装地址-1" class="headerlink" title="变量值：你的Tomcat的安装地址"></a>变量值：你的Tomcat的安装地址</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C4.png" alt></p>
-<h5 id="（3）变量名path（不需要新建，找到系统变量path编辑即可）"><a href="#（3）变量名path（不需要新建，找到系统变量path编辑即可）" class="headerlink" title="（3）变量名path（不需要新建，找到系统变量path编辑即可）"></a>（3）变量名path（不需要新建，找到系统变量path编辑即可）</h5><h5 id="变量值：在path的变量值最后面添加-CATALINA-HOME-bin"><a href="#变量值：在path的变量值最后面添加-CATALINA-HOME-bin" class="headerlink" title="变量值：在path的变量值最后面添加%CATALINA_HOME%\bin"></a>变量值：在path的变量值最后面添加%CATALINA_HOME%\bin</h5><h5 id><a href="#" class="headerlink" title></a><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C5.png" alt></h5><h4 id="4，最后，我们打开cmd，启动Tomcat就可以了"><a href="#4，最后，我们打开cmd，启动Tomcat就可以了" class="headerlink" title="4，最后，我们打开cmd，启动Tomcat就可以了"></a>4，最后，我们打开cmd，启动Tomcat就可以了</h4><h5 id="输入startup，看到以下形式就可以了"><a href="#输入startup，看到以下形式就可以了" class="headerlink" title="输入startup，看到以下形式就可以了"></a>输入startup，看到以下形式就可以了</h5><p><img src="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/D:%5Chexo%5Cblog%5Csource_posts%5CTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%5C6.png" alt></p>
-<h4 id="好了，Tomcat启动成功了，快去写你的项目吧。"><a href="#好了，Tomcat启动成功了，快去写你的项目吧。" class="headerlink" title="好了，Tomcat启动成功了，快去写你的项目吧。"></a>好了，Tomcat启动成功了，快去写你的项目吧。</h4>
-          
+    
         
-      
-    </div>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
         
+    
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url">Eclipse连接MySQL数据库</a></h1>
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T18:02:31+08:00">
-                2019-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <h4 id="1，首先，我们应创建一个是数据库："><a href="#1，首先，我们应创建一个是数据库：" class="headerlink" title="1，首先，我们应创建一个是数据库："></a>1，首先，我们应创建一个是数据库：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;CREATE   DATABASE test;   //创建一个数据库</span><br><span class="line"></span><br><span class="line">mysql&gt;use  test;  //指定test为当前要操作的数据库</span><br><span class="line"></span><br><span class="line">mysql&gt;CREATE  TABLE  user (name VARCHAR(20),password VARCHAR(20));   //创建一个表user，设置两个字段。</span><br><span class="line"></span><br><span class="line">mysql&gt;INSERT  INTO  user  VALUES(&apos;huzhiheng&apos;,&apos;123456&apos;); //插入一条数据到表中</span><br></pre></td></tr></table></figure>
-
-<h4 id="2，打开Eclipse-，创建一个项目（My）"><a href="#2，打开Eclipse-，创建一个项目（My）" class="headerlink" title="2，打开Eclipse ，创建一个项目（My）"></a>2，打开Eclipse ，创建一个项目（My）</h4><h5 id="操作：右键点击my—-gt-build-Path—-gt-add-external-Archiver…选择jdbc驱动，点击确定。"><a href="#操作：右键点击my—-gt-build-Path—-gt-add-external-Archiver…选择jdbc驱动，点击确定。" class="headerlink" title="操作：右键点击my—&gt;build Path—&gt;add external Archiver…选择jdbc驱动，点击确定。"></a>操作：右键点击my—&gt;build Path—&gt;add external Archiver…选择jdbc驱动，点击确定。</h5><p><img src="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821403290.png" alt></p>
-<h5 id="我的项目列表："><a href="#我的项目列表：" class="headerlink" title="我的项目列表："></a>我的项目列表：</h5><p><img src="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/C:%5CUsers%5CVULCAN%5CDesktop%5C2011071821410457.png" alt></p>
-<h4 id="3，驱动已经导入，下面我们来写一个程序验证一下"><a href="#3，驱动已经导入，下面我们来写一个程序验证一下" class="headerlink" title="3，驱动已经导入，下面我们来写一个程序验证一下"></a>3，驱动已经导入，下面我们来写一个程序验证一下</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line">publicclass MysqlJdbc &#123;</span><br><span class="line">  <span class="function">publicstaticvoid <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);     <span class="comment">//加载MYSQL JDBC驱动程序   </span></span><br><span class="line">     </span><br><span class="line">     System.out.println(<span class="string">"Success loading Mysql Driver!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      System.out.print(<span class="string">"Error loading Mysql Driver!"</span>);</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Connection connect = DriverManager.getConnection(</span><br><span class="line">          <span class="string">"jdbc:mysql://localhost:3306/test"</span>,<span class="string">"root"</span>,<span class="string">"198876"</span>);</span><br><span class="line">           <span class="comment">//连接URL为   jdbc:mysql//服务器地址/数据库名  ，后面的2个参数分别是登陆用户名和密码</span></span><br><span class="line"></span><br><span class="line">      System.out.println(<span class="string">"Success connect Mysql server!"</span>);</span><br><span class="line">      Statement stmt = connect.createStatement();</span><br><span class="line">      ResultSet rs = stmt.executeQuery(<span class="string">"select * from user"</span>);</span><br><span class="line">        </span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">        System.out.println(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">      System.out.print(<span class="string">"get data error!"</span>);</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="点击运行程序："><a href="#点击运行程序：" class="headerlink" title="点击运行程序："></a>点击运行程序：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Success loading Mysql Driver!</span><br><span class="line"></span><br><span class="line">Success connect Mysql server!</span><br><span class="line"></span><br><span class="line">huzhiheng</span><br></pre></td></tr></table></figure>
-
-<h4 id="出现以上结果，说明连接数据库成功！"><a href="#出现以上结果，说明连接数据库成功！" class="headerlink" title="出现以上结果，说明连接数据库成功！"></a>出现以上结果，说明连接数据库成功！</h4>
-          
+    
         
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
+        <a title="email" href="mailto:466623873@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
         
+    
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/" itemprop="url">MMySQL数据库命令大全</a></h1>
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=466623873&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-30T17:40:51+08:00">
-                2019-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         
-          
-            <h4 id="–数据库操作前的准备"><a href="#–数据库操作前的准备" class="headerlink" title="–数据库操作前的准备"></a>–数据库操作前的准备</h4><h5 id="–-创建数据库"><a href="#–-创建数据库" class="headerlink" title="– 创建数据库"></a>– 创建数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-- create database python_test_1 charset=utf8;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-使用数据库"><a href="#–-使用数据库" class="headerlink" title="– 使用数据库"></a>– 使用数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- use python_test_1;</span><br><span class="line"></span><br><span class="line">-- students表</span><br><span class="line">-- create table students(</span><br><span class="line">-- id int unsigned primary key auto_increment not null,</span><br><span class="line">-- name varchar(20) default &apos;&apos;,</span><br><span class="line">-- age tinyint unsigned default 0,</span><br><span class="line">-- height decimal(5,2),</span><br><span class="line">-- gender enum(&apos;男&apos;,&apos;女&apos;,&apos;中性&apos;,&apos;保密&apos;) default &apos;保密&apos;,</span><br><span class="line">-- cls_id int unsigned default 0,</span><br><span class="line">-- is_delete bit default 0</span><br><span class="line">-- );</span><br><span class="line">-- classes表</span><br><span class="line">-- create table classes (</span><br><span class="line">-- id int unsigned auto_increment primary key not null,</span><br><span class="line">-- name varchar(30) not null</span><br><span class="line">-- );</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="–-查询练习"><a href="#–-查询练习" class="headerlink" title="– 查询练习"></a>– 查询练习</h4><h5 id="–-查询所有字段"><a href="#–-查询所有字段" class="headerlink" title="– 查询所有字段"></a>– 查询所有字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- select * from 表名;</span><br><span class="line">select * from students;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-查询指定字段"><a href="#–-查询指定字段" class="headerlink" title="– 查询指定字段"></a>– 查询指定字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- select 列1,列2,... from 表名;</span><br><span class="line">select name,age from students;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-使用-as-给字段起别名"><a href="#–-使用-as-给字段起别名" class="headerlink" title="– 使用 as 给字段起别名"></a>– 使用 as 给字段起别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- select 字段 as 名字.... from 表名;</span><br><span class="line">select name as &apos;姓名&apos;,age from students; </span><br><span class="line"></span><br><span class="line">-- select 表名.字段 .... from 表名;</span><br><span class="line">select students.name from students;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-可以通过-as-给表起别名"><a href="#–-可以通过-as-给表起别名" class="headerlink" title="– 可以通过 as 给表起别名"></a>– 可以通过 as 给表起别名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- select 别名.字段 .... from 表名 as 别名;</span><br><span class="line">select * from students as s;</span><br><span class="line"></span><br><span class="line">select s.name from students as s;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-消除重复行-查性别"><a href="#–-消除重复行-查性别" class="headerlink" title="– 消除重复行(查性别)"></a>– 消除重复行(查性别)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- distinct 字段 不要记有个印象</span><br><span class="line">select distinct gender from students;</span><br></pre></td></tr></table></figure>
-
-<h4 id="–-条件查询"><a href="#–-条件查询" class="headerlink" title="– 条件查询"></a>– 条件查询</h4><h5 id="–-比较运算符-gt-lt-gt-lt"><a href="#–-比较运算符-gt-lt-gt-lt" class="headerlink" title="– 比较运算符&gt; &lt; &gt;= &lt;="></a>– 比较运算符&gt; &lt; &gt;= &lt;=</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-- select .... from 表名 where .....</span><br><span class="line">-- &gt;</span><br><span class="line">-- 查询年纪大于18岁的信息</span><br><span class="line">select * from students where age &gt; 18;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- &lt;</span><br><span class="line">-- 查询年纪小于18岁的信息</span><br><span class="line">select * from students where age &lt; 18;</span><br><span class="line"></span><br><span class="line">-- &gt;=</span><br><span class="line">-- &lt;=</span><br><span class="line">-- 查询小于等于18岁的信息</span><br><span class="line">select * from students where age &lt;= 18;</span><br><span class="line"></span><br><span class="line">-- =</span><br><span class="line">-- 查询年龄为18岁的所有学生的名字</span><br><span class="line">select * from students where age = 18;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-或者-lt-gt"><a href="#–-或者-lt-gt" class="headerlink" title="– != 或者 &lt;&gt;"></a>– != 或者 &lt;&gt;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 查询年龄不为18岁的所有学生的名字</span><br><span class="line">select * from students where age != 18;</span><br><span class="line">-- select * from students where age &lt;&gt; 18;</span><br><span class="line">and or not</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-逻辑运算符and"><a href="#–-逻辑运算符and" class="headerlink" title="– 逻辑运算符and"></a>– 逻辑运算符and</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 18和28之间的所以学生信息</span><br><span class="line">select * from students where age &gt; 18 and age &lt; 28;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 18岁以上的女性</span><br><span class="line">select * from students where age &gt; 18 and gender = &apos;女&apos;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-or"><a href="#–-or" class="headerlink" title="– or"></a>– or</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 18以上或者身高高过180(包含)以上</span><br><span class="line">select * from students where age &gt; 18 or height &gt;= 180;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-not"><a href="#–-not" class="headerlink" title="– not"></a>– not</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 不在 18岁以上的女性 这个范围内的信息</span><br><span class="line">-- select * from students where not (age&gt;18 and gender=2);</span><br><span class="line">select * from students where not age &gt; 18 and gender= &quot;女&quot;;</span><br><span class="line"></span><br><span class="line">select * from students where not (age &gt; 18 and gender = &quot;女&quot;);</span><br><span class="line"></span><br><span class="line">like % _</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-模糊查询-where-name-like-要查询的数据-like"><a href="#–-模糊查询-where-name-like-要查询的数据-like" class="headerlink" title="– 模糊查询(where name like 要查询的数据)like"></a>– 模糊查询(where name like 要查询的数据)like</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-- % 替换任意个</span><br><span class="line">-- _ 替换1个</span><br><span class="line">-- 查询姓名中 以 &quot;小&quot; 开始的名字</span><br><span class="line">select * from students where name like &apos;小%&apos;;</span><br><span class="line"></span><br><span class="line">-- 查询姓名中 有 &quot;小&quot; 所有的名字</span><br><span class="line">select * from students where name like &apos;%小%&apos;;</span><br><span class="line"></span><br><span class="line">-- 查询有2个字的名字</span><br><span class="line">select * from students where name like &apos;__&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询有3个字的名字</span><br><span class="line">select * from students where name like &apos;___&apos;;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">-- 查询至少有2个字的名字</span><br><span class="line">select * from students where name like &apos;__%&apos;;</span><br><span class="line"></span><br><span class="line">select * from students where name not like &quot;__&quot;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-范围查询"><a href="#–-范围查询" class="headerlink" title="– 范围查询"></a>– 范围查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-- in (1, 3, 8)表示在一个非连续的范围内</span><br><span class="line">-- 查询 年龄为18或34的姓名</span><br><span class="line">select * from students where age = 18 or age = 34 ;</span><br><span class="line">select * from students where age in (18,34);</span><br><span class="line"></span><br><span class="line">-- not in 不非连续的范围之内</span><br><span class="line">-- 年龄不是 18或34岁的信息</span><br><span class="line">select * from students where age not in(18,34);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- between ... and ...表示在一个连续的范围内</span><br><span class="line">-- 查询 年龄在18到34之间的的信息</span><br><span class="line">select * from students where age &gt; 18 and age &lt; 34;</span><br><span class="line">-- between xxx and xxx</span><br><span class="line">select * from students where age between 18 and 34; --between...and...这是包含两端的数据</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- not between ... and ...表示不在一个连续的范围内</span><br><span class="line">-- 查询 年龄不在18到34之间的的信息</span><br><span class="line"></span><br><span class="line">select * from students where age not between 18 and 34;</span><br></pre></td></tr></table></figure>
-
-<h4 id="–-空判断"><a href="#–-空判断" class="headerlink" title="– 空判断"></a>– 空判断</h4><h5 id="–-判空is-null"><a href="#–-判空is-null" class="headerlink" title="– 判空is null"></a>– 判空is null</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 查询身高为空的信息</span><br><span class="line">select * from students where height is null;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-判非空is-not-null"><a href="#–-判非空is-not-null" class="headerlink" title="– 判非空is not null"></a>– 判非空is not null</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from students where height is not null;</span><br><span class="line"></span><br><span class="line">order by 字段 asc,desc</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-排序"><a href="#–-排序" class="headerlink" title="– 排序"></a>– 排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-- order by 字段</span><br><span class="line">-- asc</span><br><span class="line">-- asc从小到大排列，即升序</span><br><span class="line">-- desc</span><br><span class="line">-- desc从大到小排序，即降序</span><br><span class="line">-- 查询年龄在18到34岁之间的男性，按照年龄从小到大到排序</span><br><span class="line">select * from students where (age between 18 and 34) and gender=&apos;男&apos; order by age asc;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询年龄在18到34岁之间的女性，身高从高到矮排序</span><br><span class="line">select * from students where (age between 18 and 34) and gender =&apos;女&apos; order by height desc;</span><br><span class="line"></span><br><span class="line">-- order by 多个字段</span><br><span class="line">-- 查询年龄在18到34岁之间的女性，身高从高到矮排序, 如果身高相同的情况下按照年龄从小到大排序</span><br><span class="line">select * from students where (age between 18 and 34) and gender = &apos;女&apos; order by height desc,age asc;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 如果年龄也相同那么按照id从大到小排序</span><br><span class="line">select * from students where (age between 18 and 34) and gender =&apos;女&apos; order by height desc,age asc,id desc;</span><br></pre></td></tr></table></figure>
-
-<h5 id="排序有优先级-第一个主排序-后面是次排序-在保证主排序不变的情况下-能排就排-不排就算了"><a href="#排序有优先级-第一个主排序-后面是次排序-在保证主排序不变的情况下-能排就排-不排就算了" class="headerlink" title="排序有优先级,第一个主排序,后面是次排序,在保证主排序不变的情况下,能排就排,不排就算了"></a>排序有优先级,第一个主排序,后面是次排序,在保证主排序不变的情况下,能排就排,不排就算了</h5><h4 id="–-聚合函数"><a href="#–-聚合函数" class="headerlink" title="– 聚合函数"></a>– 聚合函数</h4><h5 id="–-总数"><a href="#–-总数" class="headerlink" title="– 总数"></a>– 总数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- count</span><br><span class="line">-- 查询男性有多少人 count(字段) 要注意如果值有null那么不会进行计算</span><br><span class="line">select count(*) from students where gender=&apos;男&apos;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-最大值"><a href="#–-最大值" class="headerlink" title="– 最大值"></a>– 最大值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- max</span><br><span class="line">-- 查询最大的年龄</span><br><span class="line">select max(age) from students;</span><br><span class="line"></span><br><span class="line">-- 查询女性的最高 身高</span><br><span class="line">select max(height) from students where gender =&apos;女&apos;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-最小值"><a href="#–-最小值" class="headerlink" title="– 最小值"></a>– 最小值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- min</span><br><span class="line">select min(age) from students ;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-求和"><a href="#–-求和" class="headerlink" title="– 求和"></a>– 求和</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- sum</span><br><span class="line">-- 计算所有人的年龄总和</span><br><span class="line">select sum(age) from students;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-平均值"><a href="#–-平均值" class="headerlink" title="– 平均值"></a>– 平均值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-- avg</span><br><span class="line">-- 计算平均年龄</span><br><span class="line">select avg(age) from students;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 计算平均年龄 sum(age)/count(*)</span><br><span class="line">select sum(age)/count(*) from students;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 四舍五入 round(123.23 , 1) 保留1位小数</span><br><span class="line">-- 计算所有人的平均年龄，保留2位小数</span><br><span class="line">select round (avg(age),2) from students;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 计算男性的平均身高 保留2位小数</span><br><span class="line">select round(avg(height),2) from students where gender=&apos;男&apos;;</span><br><span class="line">select avg(height) from students where gender = &apos;男&apos;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-分组"><a href="#–-分组" class="headerlink" title="– 分组"></a>– 分组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">-- group by</span><br><span class="line">-- 按照性别分组,查询所有的性别</span><br><span class="line">-- select 分组字段 from 表名 group by 分组字段;</span><br><span class="line">select gender from students group by gender;</span><br><span class="line"></span><br><span class="line">select 分组字段 from 表名 group by 分组字段;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 计算每种性别中的人数</span><br><span class="line">select gender,count(*) from students group by gender;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">-- group_concat(...)</span><br><span class="line">-- 查询同种性别中的姓名</span><br><span class="line">select gender,group_concat(name) from students group by gender;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询每组性别的平均年龄</span><br><span class="line">select gender,avg(age) from students group by gender;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- select * from students where</span><br><span class="line">-- group by xxx having having用在分组条件</span><br><span class="line"></span><br><span class="line">-- having(注意having和group by 连用 having后通常也要跟 聚合函数)</span><br><span class="line">-- 查询平均年龄超过30岁的性别，以及姓名</span><br><span class="line">select gender ,avg(age) from students group by gender having avg(age) &gt; 30;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询每种性别中的人数多于2个的信息</span><br><span class="line">select gender,count(*) from students group by gender having count(*) &gt; 2;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">-- with rollup 汇总的作用(了解)</span><br><span class="line">--select gender,count(*) from students group by gender with rollup;</span><br><span class="line">select gender,count(*) from students group by gender with rollup having count(*) &gt;2;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--按性别分组,平均身高大160的女性组的名字</span><br><span class="line">select gender,avg(height),group_concat(name) from students group by gender having avg(height) &gt; 160 and gender=&apos;女&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- limit 起始位置,个数, 这个一定要放在最后</span><br><span class="line">-- 分页</span><br><span class="line">-- limit start, count</span><br><span class="line">-- limit 放在最后面(注意)</span><br><span class="line"></span><br><span class="line">起始位置 = (页数-1)*每页的个数</span><br><span class="line"></span><br><span class="line">-- 限制查询出来的数据个数</span><br><span class="line">-- 查询前5个数据</span><br><span class="line">select * from students limit 0,5;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 每页显示2个，第1个页面</span><br><span class="line">select * from students limit 0,2;</span><br><span class="line"></span><br><span class="line">-- 每页显示2个，第2个页面</span><br><span class="line">select * from students limit 2,2;</span><br><span class="line"></span><br><span class="line">-- 每页显示2个，第3个页面</span><br><span class="line">select * from students limit 4,2;</span><br><span class="line"></span><br><span class="line">-- 每页显示2个，第4个页面</span><br><span class="line">select * from students limit 6,2;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 每页显示2个，显示第6页的信息, 按照年龄从小到大排序</span><br><span class="line">select * from students order by age asc limit 6,2;</span><br><span class="line">-- 如果重新排序了,那么会显示第一页</span><br></pre></td></tr></table></figure>
-
-<h5 id="–-连接查询"><a href="#–-连接查询" class="headerlink" title="– 连接查询"></a>– 连接查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">-- inner join ... on</span><br><span class="line">-- select ... from 表A inner join 表B;</span><br><span class="line">-- 查询 有能够对应班级的学生以及班级信息</span><br><span class="line">select * from students inner join classes on students.cls_id = classes.id;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 按照要求显示姓名、班级</span><br><span class="line">select students.name,classes.name from students inner join classes on students.cls_id = classes.id;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 给数据表起名字</span><br><span class="line">select s.name,c.name from students as s inner join classes as c on s.cls_id = c.id;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询 有能够对应班级的学生以及班级信息，显示学生的所有信息 students.*，只显示班级名称 classes.name.</span><br><span class="line">select students.* ,classes.name from students inner join classes on students.cls_id = classes.id;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 在以上的查询中，将班级名显示在第1列</span><br><span class="line">select classes.name,students.* from students inner join classes on students.cls_id = classes.id;</span><br><span class="line"></span><br><span class="line">-- 查询 有能够对应班级的学生以及班级信息, 按照班级名进行排序</span><br><span class="line">select classes.name,students.* from students inner join classes on students.cls_id = classes.id order by classes.name asc;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 当时同一个班级的时候，按照学生的id进行从小到大排序</span><br><span class="line">select classes.name,students.* from students inner join classes on students.cls_id = classes.id order by classes.name asc,students.id asc;</span><br><span class="line"></span><br><span class="line">\#如果是group by 条件使用having</span><br><span class="line">\#如果是inner join条件使用on</span><br><span class="line">\#其他都用where</span><br><span class="line"></span><br><span class="line">-- left join</span><br><span class="line">-- 查询每位学生对应的班级信息</span><br><span class="line">select * from students left join classes on students.cls_id = classes.id;</span><br><span class="line">左边的表不管在右边的表中是否找到数据,都显示</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 查询没有对应班级信息的学生</span><br><span class="line">select * from students left join classes on students.cls_id = classes.id where classes.name is null;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- right join on</span><br><span class="line">-- 将数据表名字互换位置，用left join完成</span><br><span class="line"></span><br><span class="line">select * from students right join classes on students.cls_id = classes.id;</span><br><span class="line"></span><br><span class="line">select * from classes right join students on students.cls_id = classes.id;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="–-子查询"><a href="#–-子查询" class="headerlink" title="– 子查询"></a>– 子查询</h4><h5 id="–-标量子查询-子查询返回的结果是一个数据-一行一列"><a href="#–-标量子查询-子查询返回的结果是一个数据-一行一列" class="headerlink" title="– 标量子查询: 子查询返回的结果是一个数据(一行一列)"></a>– 标量子查询: 子查询返回的结果是一个数据(一行一列)</h5><h5 id="–-列子查询-返回的结果是一列-一列多行"><a href="#–-列子查询-返回的结果是一列-一列多行" class="headerlink" title="– 列子查询: 返回的结果是一列(一列多行)"></a>– 列子查询: 返回的结果是一列(一列多行)</h5><h5 id="–-行子查询-返回的结果是一行-一行多列"><a href="#–-行子查询-返回的结果是一行-一行多列" class="headerlink" title="– 行子查询: 返回的结果是一行(一行多列)"></a>– 行子查询: 返回的结果是一行(一行多列)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">-- 查询出高于平均身高的信息(height)</span><br><span class="line">select avg(height) from students;</span><br><span class="line"></span><br><span class="line">select * from students where height &gt; 172;</span><br><span class="line"></span><br><span class="line">select * from students where height &gt; (select avg(height) from students);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">-- 查询学生的班级号能够对应的 学生名字</span><br><span class="line">select * from students where cls_id in (1,2);</span><br><span class="line"></span><br><span class="line">select id from classes;</span><br><span class="line"></span><br><span class="line">select * from students where cls_id in (select id from classes);</span><br><span class="line">省市区三级联动</span><br><span class="line">--创建数据库表</span><br><span class="line">create table areas(</span><br><span class="line">aid int primary key,</span><br><span class="line">atitle varchar(20),</span><br><span class="line">pid int</span><br><span class="line">);</span><br><span class="line">--从sql文件中导入数据</span><br><span class="line">-- source 具体地址/areas.sql;</span><br><span class="line">source areas.sql;</span><br><span class="line">--查询一共有多少个省</span><br><span class="line">select * from areas where pid is null;</span><br><span class="line"></span><br><span class="line">--例1：查询省的名称为“河南省”的所有城市</span><br><span class="line">select aid from areas where atitle = &apos;河南省&apos;;</span><br><span class="line">select * from areas where pid = (select aid from areas where atitle = &apos;河南省&apos;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select * from areas as a1 inner join areas as a2 on a1.pid = a2.aid where a2.atitle=&apos;河南省&apos;;</span><br><span class="line"></span><br><span class="line">--例2：查询市的名称为“广州市”的所有区县</span><br><span class="line">select * from areas where pid = (select aid from areas where atitle = &apos;郑州市&apos;);</span><br><span class="line"></span><br><span class="line">select * from areas as a1 inner join areas as a2 on a1.pid = a2.aid where a2.atitle=&apos;郑州市&apos;;</span><br></pre></td></tr></table></figure>
-
-
-
-          
+    
         
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=466725003" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" itemprop="url">JAVA面向对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-11T10:16:20+08:00">
-                2019-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h4 id="面向对象的概念："><a href="#面向对象的概念：" class="headerlink" title="面向对象的概念："></a>面向对象的概念：</h4><h5 id="面向对象是把一个项目，一件事情，从头到尾一步一步执行，直到结束。"><a href="#面向对象是把一个项目，一件事情，从头到尾一步一步执行，直到结束。" class="headerlink" title="面向对象是把一个项目，一件事情，从头到尾一步一步执行，直到结束。"></a>面向对象是把一个项目，一件事情，从头到尾一步一步执行，直到结束。</h5><h4 id="类的对象："><a href="#类的对象：" class="headerlink" title="类的对象："></a>类的对象：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;&#125; <span class="comment">//file——&gt;new——&gt;class——&gt;类名</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="创建对象："><a href="#创建对象：" class="headerlink" title="创建对象："></a>创建对象：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类名 对象名=<span class="keyword">new</span> 类名();</span><br><span class="line">（<span class="number">1</span>）、对象名.方法名();  （<span class="number">2</span>）、 对象名.属性;</span><br></pre></td></tr></table></figure>
-
-<h4 id="构造方法："><a href="#构造方法：" class="headerlink" title="构造方法："></a>构造方法：</h4><h5 id="方法名和类名相同，且无返回值。"><a href="#方法名和类名相同，且无返回值。" class="headerlink" title="方法名和类名相同，且无返回值。"></a>方法名和类名相同，且无返回值。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> 类名()&#123;&#125;<span class="comment">//主要的作用是初始化操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="构造方法的重载："><a href="#构造方法的重载：" class="headerlink" title="构造方法的重载："></a>构造方法的重载：</h4><h5 id="在同一个类中，方法名相同，参数个数，顺序，类型不同的构造方法。"><a href="#在同一个类中，方法名相同，参数个数，顺序，类型不同的构造方法。" class="headerlink" title="在同一个类中，方法名相同，参数个数，顺序，类型不同的构造方法。"></a>在同一个类中，方法名相同，参数个数，顺序，类型不同的构造方法。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> 类名(String Name，<span class="keyword">int</span> age)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="构造方法的执行："><a href="#构造方法的执行：" class="headerlink" title="构造方法的执行："></a>构造方法的执行：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）、<span class="keyword">new</span> 类名();---&gt;执行</span><br><span class="line">（<span class="number">2</span>）、Super();---&gt;执行父类</span><br></pre></td></tr></table></figure>
-
-<h4 id="static修饰符："><a href="#static修饰符：" class="headerlink" title="static修饰符："></a>static修饰符：</h4><h5 id="static是静态修饰符，可以修饰属性，方法，代码块。"><a href="#static是静态修饰符，可以修饰属性，方法，代码块。" class="headerlink" title="static是静态修饰符，可以修饰属性，方法，代码块。"></a>static是静态修饰符，可以修饰属性，方法，代码块。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（<span class="number">1</span>）、类名.属性      </span><br><span class="line">（<span class="number">2</span>）、类名.方法名</span><br></pre></td></tr></table></figure>
-
-<h2 id="面向对象三大特征——封装"><a href="#面向对象三大特征——封装" class="headerlink" title="面向对象三大特征——封装"></a>面向对象三大特征——封装</h2><h4 id="封装的概念："><a href="#封装的概念：" class="headerlink" title="封装的概念："></a>封装的概念：</h4><h5 id="把一个对象的属性私有化，同时提供一些可以被外界访问属性的方法。"><a href="#把一个对象的属性私有化，同时提供一些可以被外界访问属性的方法。" class="headerlink" title="把一个对象的属性私有化，同时提供一些可以被外界访问属性的方法。"></a>把一个对象的属性私有化，同时提供一些可以被外界访问属性的方法。</h5><h4 id="封装的步骤："><a href="#封装的步骤：" class="headerlink" title="封装的步骤："></a>封装的步骤：</h4><h5 id="（1）、把属性私有化（private）"><a href="#（1）、把属性私有化（private）" class="headerlink" title="（1）、把属性私有化（private）"></a>（1）、把属性私有化（private）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure>
-
-<h5 id="（2）、对这些属性设置get和set方法"><a href="#（2）、对这些属性设置get和set方法" class="headerlink" title="（2）、对这些属性设置get和set方法"></a>（2）、对这些属性设置get和set方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="（3）、set赋值，get取值"><a href="#（3）、set赋值，get取值" class="headerlink" title="（3）、set赋值，get取值"></a>（3）、set赋值，get取值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">demo d=<span class="keyword">new</span> demo();</span><br><span class="line">d.setName(<span class="string">"张三"</span>);</span><br><span class="line">System.out.println(d.getName());</span><br></pre></td></tr></table></figure>
-
-<h4 id="封装的作用："><a href="#封装的作用：" class="headerlink" title="封装的作用："></a>封装的作用：</h4><h5 id="避免一些不合乎常理的操作。"><a href="#避免一些不合乎常理的操作。" class="headerlink" title="避免一些不合乎常理的操作。"></a>避免一些不合乎常理的操作。</h5><h4 id="修饰符："><a href="#修饰符：" class="headerlink" title="修饰符："></a>修饰符：</h4><h5 id="public-（公共的）在一个项目中都可以访问，权限最高"><a href="#public-（公共的）在一个项目中都可以访问，权限最高" class="headerlink" title="public （公共的）在一个项目中都可以访问，权限最高"></a>public （公共的）在一个项目中都可以访问，权限最高</h5><h5 id="private（私有的）只能在本类中进行访问"><a href="#private（私有的）只能在本类中进行访问" class="headerlink" title="private（私有的）只能在本类中进行访问"></a>private（私有的）只能在本类中进行访问</h5><h5 id="protected（受保护的）在同一个包中进行访问-在继承中子类可以访问父类"><a href="#protected（受保护的）在同一个包中进行访问-在继承中子类可以访问父类" class="headerlink" title="protected（受保护的）在同一个包中进行访问   在继承中子类可以访问父类"></a>protected（受保护的）在同一个包中进行访问   在继承中子类可以访问父类</h5><h5 id="default（默认的）同一个类，同一个包能访问"><a href="#default（默认的）同一个类，同一个包能访问" class="headerlink" title="default（默认的）同一个类，同一个包能访问"></a>default（默认的）同一个类，同一个包能访问</h5><h2 id="面向对象三大特征——继承"><a href="#面向对象三大特征——继承" class="headerlink" title="面向对象三大特征——继承"></a>面向对象三大特征——继承</h2><h4 id="继承的概念："><a href="#继承的概念：" class="headerlink" title="继承的概念："></a>继承的概念：</h4><h5 id="父子之间的关系。"><a href="#父子之间的关系。" class="headerlink" title="父子之间的关系。"></a>父子之间的关系。</h5><h4 id="继承的关键字："><a href="#继承的关键字：" class="headerlink" title="继承的关键字："></a>继承的关键字：</h4><h5 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 <span class="keyword">extends</span> 父类</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="继承的说明："><a href="#继承的说明：" class="headerlink" title="继承的说明："></a>继承的说明：</h4><h5 id="（1）、一个父类可以有多个子类，但一个子类只能有父类"><a href="#（1）、一个父类可以有多个子类，但一个子类只能有父类" class="headerlink" title="（1）、一个父类可以有多个子类，但一个子类只能有父类"></a>（1）、一个父类可以有多个子类，但一个子类只能有父类</h5><h5 id="（2）、子类继承了父类的所有属性和方法，但是只能调用非private属性和方法"><a href="#（2）、子类继承了父类的所有属性和方法，但是只能调用非private属性和方法" class="headerlink" title="（2）、子类继承了父类的所有属性和方法，但是只能调用非private属性和方法"></a>（2）、子类继承了父类的所有属性和方法，但是只能调用非private属性和方法</h5><h5 id="（3）、可以多层继承"><a href="#（3）、可以多层继承" class="headerlink" title="（3）、可以多层继承"></a>（3）、可以多层继承</h5><h4 id="继承的使用："><a href="#继承的使用：" class="headerlink" title="继承的使用："></a>继承的使用：</h4><h5 id="（1）、在子类中可以直接调用父类的非private属性和方法"><a href="#（1）、在子类中可以直接调用父类的非private属性和方法" class="headerlink" title="（1）、在子类中可以直接调用父类的非private属性和方法"></a>（1）、在子类中可以直接调用父类的非private属性和方法</h5><h5 id="（2）、可以用super-方法-super-属性"><a href="#（2）、可以用super-方法-super-属性" class="headerlink" title="（2）、可以用super.方法   super.属性"></a>（2）、可以用super.方法   super.属性</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">super</span>.方法;</span><br><span class="line"><span class="keyword">super</span>.属性;</span><br></pre></td></tr></table></figure>
-
-<h4 id="重写："><a href="#重写：" class="headerlink" title="重写："></a>重写：</h4><h5 id="（1）、必须继承"><a href="#（1）、必须继承" class="headerlink" title="（1）、必须继承"></a>（1）、必须继承</h5><h5 id="（2）、方法名一致，参数个数，顺序，类型全部一致"><a href="#（2）、方法名一致，参数个数，顺序，类型全部一致" class="headerlink" title="（2）、方法名一致，参数个数，顺序，类型全部一致"></a>（2）、方法名一致，参数个数，顺序，类型全部一致</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line">	system.out.println(<span class="string">"动物发出叫声"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子类重写</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> viod <span class="title">shout</span><span class="params">()</span></span>&#123;</span><br><span class="line">	system.out.println(<span class="string">"某一种动物发出叫声"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;</span><br><span class="line">	父类 引用变量名=<span class="keyword">new</span> 父类();<span class="comment">//创建父类的实例对象</span></span><br><span class="line">	引用变量名.shout();<span class="comment">//调用父类重写shout()方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="面向对象三大特征——多态"><a href="#面向对象三大特征——多态" class="headerlink" title="面向对象三大特征——多态"></a>面向对象三大特征——多态</h2><h4 id="多态的概念："><a href="#多态的概念：" class="headerlink" title="多态的概念："></a>多态的概念：</h4><h5 id="指允许不同类的对象对同一消息做出响应-。"><a href="#指允许不同类的对象对同一消息做出响应-。" class="headerlink" title="指允许不同类的对象对同一消息做出响应 。"></a>指允许不同类的对象对同一消息做出响应 。</h5><h4 id="多态的必要条件："><a href="#多态的必要条件：" class="headerlink" title="多态的必要条件："></a>多态的必要条件：</h4><h5 id="（1）、要有继承"><a href="#（1）、要有继承" class="headerlink" title="（1）、要有继承"></a>（1）、要有继承</h5><h5 id="（2）、要有重写"><a href="#（2）、要有重写" class="headerlink" title="（2）、要有重写"></a>（2）、要有重写</h5><h5 id="（3）、-父类引用指向子类对象（向上转型）"><a href="#（3）、-父类引用指向子类对象（向上转型）" class="headerlink" title="（3）、 父类引用指向子类对象（向上转型）"></a>（3）、 父类引用指向子类对象（向上转型）</h5><h4 id="多态的好处："><a href="#多态的好处：" class="headerlink" title="多态的好处："></a>多态的好处：</h4><h5 id="（1）、可替代性：多态对已存在代码具有可替换性"><a href="#（1）、可替代性：多态对已存在代码具有可替换性" class="headerlink" title="（1）、可替代性：多态对已存在代码具有可替换性"></a>（1）、可替代性：多态对已存在代码具有可替换性</h5><h5 id="（2）、可扩充性：多态对代码具有可扩充性"><a href="#（2）、可扩充性：多态对代码具有可扩充性" class="headerlink" title="（2）、可扩充性：多态对代码具有可扩充性"></a>（2）、可扩充性：多态对代码具有可扩充性</h5><h5 id="（3）、接口性：多态是超类通过方法签名-向子类提供了一个共同接口，有子类来完善或者覆盖它而实现的"><a href="#（3）、接口性：多态是超类通过方法签名-向子类提供了一个共同接口，有子类来完善或者覆盖它而实现的" class="headerlink" title="（3）、接口性：多态是超类通过方法签名,向子类提供了一个共同接口，有子类来完善或者覆盖它而实现的"></a>（3）、接口性：多态是超类通过方法签名,向子类提供了一个共同接口，有子类来完善或者覆盖它而实现的</h5><h5 id="（4）、灵活性：在应用中体现了灵活多样的操作，提高了使用效率"><a href="#（4）、灵活性：在应用中体现了灵活多样的操作，提高了使用效率" class="headerlink" title="（4）、灵活性：在应用中体现了灵活多样的操作，提高了使用效率"></a>（4）、灵活性：在应用中体现了灵活多样的操作，提高了使用效率</h5><h5 id="（5）、简化性：简化了代码的编写和修改过程"><a href="#（5）、简化性：简化了代码的编写和修改过程" class="headerlink" title="（5）、简化性：简化了代码的编写和修改过程"></a>（5）、简化性：简化了代码的编写和修改过程</h5><h4 id="多态的作用："><a href="#多态的作用：" class="headerlink" title="多态的作用："></a>多态的作用：</h4><h5 id="消除类型之间的耦合关系。"><a href="#消除类型之间的耦合关系。" class="headerlink" title="消除类型之间的耦合关系。"></a>消除类型之间的耦合关系。</h5><h4 id="多态的使用："><a href="#多态的使用：" class="headerlink" title="多态的使用："></a>多态的使用：</h4><h5 id="lt-父类型-gt-lt-引用变量名-gt-new-lt-子类型-gt"><a href="#lt-父类型-gt-lt-引用变量名-gt-new-lt-子类型-gt" class="headerlink" title="&lt;父类型&gt;  &lt;引用变量名&gt; =new &lt;子类型&gt;();"></a>&lt;父类型&gt;  &lt;引用变量名&gt; =new &lt;子类型&gt;();</h5><h5 id="lt-子类型-gt-lt-引用变量名-gt-lt-子类型-gt-lt-父类型的引用变量-gt"><a href="#lt-子类型-gt-lt-引用变量名-gt-lt-子类型-gt-lt-父类型的引用变量-gt" class="headerlink" title="&lt;子类型&gt;  &lt;引用变量名&gt; =(&lt;子类型&gt;)&lt;父类型的引用变量&gt;;"></a>&lt;子类型&gt;  &lt;引用变量名&gt; =(&lt;子类型&gt;)&lt;父类型的引用变量&gt;;</h5><h5 id="注意：向下转型必须基于向上转型"><a href="#注意：向下转型必须基于向上转型" class="headerlink" title="注意：向下转型必须基于向上转型"></a><strong><em>注意：向下转型必须基于向上转型</em></strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">  			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cooking</span><span class="params">()</span></span>&#123;</span><br><span class="line">  				System.out.println(<span class="string">"米饭"</span>);</span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">    	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">  			<span class="meta">@Override</span></span><br><span class="line">  			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cooking</span><span class="params">()</span></span>&#123;</span><br><span class="line">  				System.out.println(<span class="string">"熬粥"</span>);</span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line"> 		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"> 			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> 			    <span class="comment">//向上转型</span></span><br><span class="line"> 				Father son=<span class="keyword">new</span> Son();</span><br><span class="line"> 				son.cooking();</span><br><span class="line"> 				<span class="comment">//向下转型      </span></span><br><span class="line"> 				Son son=(Son)father;</span><br><span class="line"> 				son.cooking();</span><br><span class="line"> 			&#125;</span><br><span class="line"> 		&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><h4 id="抽象的概念："><a href="#抽象的概念：" class="headerlink" title="抽象的概念："></a>抽象的概念：</h4><h5 id="将现时生活中的事物，抽离其共同特征，形成我们需要的对象。"><a href="#将现时生活中的事物，抽离其共同特征，形成我们需要的对象。" class="headerlink" title="将现时生活中的事物，抽离其共同特征，形成我们需要的对象。"></a>将现时生活中的事物，抽离其共同特征，形成我们需要的对象。</h5><h4 id="抽象类的概念："><a href="#抽象类的概念：" class="headerlink" title="抽象类的概念："></a>抽象类的概念：</h4><h5 id="如果没有一个类没有足够的信息去描述一个具体的对象，我们称之为抽象类。"><a href="#如果没有一个类没有足够的信息去描述一个具体的对象，我们称之为抽象类。" class="headerlink" title="如果没有一个类没有足够的信息去描述一个具体的对象，我们称之为抽象类。"></a>如果没有一个类没有足够的信息去描述一个具体的对象，我们称之为抽象类。</h5><h4 id="抽象的关键字："><a href="#抽象的关键字：" class="headerlink" title="抽象的关键字："></a>抽象的关键字：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span>      <span class="comment">//可以修饰类，也可以修饰方法</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="抽象的语法："><a href="#抽象的语法：" class="headerlink" title="抽象的语法："></a>抽象的语法：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类</span></span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">  			<span class="comment">//抽象方法没有方法体</span></span><br><span class="line">  			<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>;	</span><br><span class="line">  		&#125;</span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line">		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">            <span class="meta">@override</span><span class="comment">//重写</span></span><br><span class="line">            <span class="comment">//当父类是抽象类的时候，子类必须重写父类里面的抽象方法</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>&#123;</span><br><span class="line">                system.<span class="function">out <span class="title">println</span><span class="params">(<span class="string">"狗跑的快"</span>)</span></span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="final修饰符：最终的"><a href="#final修饰符：最终的" class="headerlink" title="final修饰符：最终的"></a>final修饰符：最终的</h4><h5 id="1-、修饰变量，修饰方法，修饰类"><a href="#1-、修饰变量，修饰方法，修饰类" class="headerlink" title="(1)、修饰变量，修饰方法，修饰类"></a>(1)、修饰变量，修饰方法，修饰类</h5><h5 id="2）、当修饰变量时，变量转换成常量，常量的值不能改变"><a href="#2）、当修饰变量时，变量转换成常量，常量的值不能改变" class="headerlink" title="(2）、当修饰变量时，变量转换成常量，常量的值不能改变"></a>(2）、当修饰变量时，变量转换成常量，常量的值不能改变</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> a=<span class="number">18</span>;<span class="comment">//a=18;不能改变,必须给一个初始值</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="3-、当修饰方法时，该方法不能被重写"><a href="#3-、当修饰方法时，该方法不能被重写" class="headerlink" title="(3)、当修饰方法时，该方法不能被重写"></a>(3)、当修饰方法时，该方法不能被重写</h5><h5 id="4）、当修饰类时，该类不能被继承"><a href="#4）、当修饰类时，该类不能被继承" class="headerlink" title="(4）、当修饰类时，该类不能被继承"></a>(4）、当修饰类时，该类不能被继承</h5><h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h4 id="接口的概念"><a href="#接口的概念" class="headerlink" title="接口的概念"></a>接口的概念</h4><h5 id="接口是一套规范，满足这个规范的设备，就可以将它们组装到一起，也可以是实现具体复杂事物时间但有规律的功能"><a href="#接口是一套规范，满足这个规范的设备，就可以将它们组装到一起，也可以是实现具体复杂事物时间但有规律的功能" class="headerlink" title="接口是一套规范，满足这个规范的设备，就可以将它们组装到一起，也可以是实现具体复杂事物时间但有规律的功能."></a>接口是一套规范，满足这个规范的设备，就可以将它们组装到一起，也可以是实现具体复杂事物时间但有规律的功能.</h5><h4 id="接口的关键字："><a href="#接口的关键字：" class="headerlink" title="接口的关键字："></a>接口的关键字：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span>    //接口</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="接口的语法："><a href="#接口的语法：" class="headerlink" title="接口的语法："></a>接口的语法：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名</span>&#123;&#125;</span><br><span class="line">		File---&gt;<span class="keyword">new</span>---&gt;<span class="class"><span class="keyword">interface</span>//创建接口</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="接口的用法"><a href="#接口的用法" class="headerlink" title="接口的用法:"></a>接口的用法:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	实现接口的关键字  implements</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名</span>&#123;</span><br><span class="line">		<span class="comment">//接口是纯抽象类</span></span><br><span class="line">		<span class="comment">//接口里面的方法都是抽象方法</span></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> 接口名</span>&#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setData</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			Play play=<span class="keyword">new</span> Play();</span><br><span class="line">			play.setData();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//注意接口可以进行多继承</span></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> 接口名 <span class="keyword">extends</span> 接口名，接口名</span>&#123;&#125;</span><br><span class="line">	<span class="comment">//一般用法</span></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 <span class="keyword">extends</span> 父类 <span class="keyword">implements</span> 接口，接口</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="注意：接口的实现类必须实现接口的全部方法，否则必须定义为抽象类"><a href="#注意：接口的实现类必须实现接口的全部方法，否则必须定义为抽象类" class="headerlink" title="*注意：接口的实现类必须实现接口的全部方法，否则必须定义为抽象类"></a>*注意：接口的实现类必须实现接口的全部方法，否则必须定义为抽象类</h4><h2 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h2><h4 id="List接口："><a href="#List接口：" class="headerlink" title="List接口："></a>List接口：</h4><h5 id="ArrayList："><a href="#ArrayList：" class="headerlink" title="ArrayList："></a>ArrayList：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList list=<span class="keyword">new</span> ArrayList();</span><br><span class="line">		list.add();<span class="comment">//添加数据</span></span><br><span class="line"> 		list.get();<span class="comment">//获取数据</span></span><br><span class="line">		list.remove();<span class="comment">//删除数据</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="LinkedList："><a href="#LinkedList：" class="headerlink" title="LinkedList："></a>LinkedList：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LinkedList list=<span class="keyword">new</span> LinkedList();</span><br><span class="line">		list.add();<span class="comment">//添加数据</span></span><br><span class="line"> 		list.get();<span class="comment">//获取数据</span></span><br><span class="line"> 		list.remove();<span class="comment">//删除数据</span></span><br><span class="line"> 		list.addFirst();<span class="comment">//在首部添加数据</span></span><br><span class="line"> 		list.addLast();<span class="comment">//在尾部添加数据</span></span><br><span class="line"> 		list.removeFirst();<span class="comment">//删除首部数据</span></span><br><span class="line"> 		list.removeFirst();<span class="comment">//删除尾部数据</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h4><h5 id="（1）、-ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构"><a href="#（1）、-ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构" class="headerlink" title="（1）、  ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构"></a>（1）、  ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构</h5><h5 id="（2）、对于访问get和set，ArrayList优于LinkedList，因为LinkedList要移动指针"><a href="#（2）、对于访问get和set，ArrayList优于LinkedList，因为LinkedList要移动指针" class="headerlink" title="（2）、对于访问get和set，ArrayList优于LinkedList，因为LinkedList要移动指针"></a>（2）、对于访问get和set，ArrayList优于LinkedList，因为LinkedList要移动指针</h5><h5 id="（3）、对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据"><a href="#（3）、对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据" class="headerlink" title="（3）、对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据"></a>（3）、对于新增和删除操作add和remove，LinkedList比较占优势，因为ArrayList要移动数据</h5><h5 id="（4）、-LinkedList采用链表存储方式，优先在于插入，删除元素时效率比较高"><a href="#（4）、-LinkedList采用链表存储方式，优先在于插入，删除元素时效率比较高" class="headerlink" title="（4）、 LinkedList采用链表存储方式，优先在于插入，删除元素时效率比较高"></a>（4）、 LinkedList采用链表存储方式，优先在于插入，删除元素时效率比较高</h5><h4 id="Map接口："><a href="#Map接口：" class="headerlink" title="Map接口："></a>Map接口：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map map=<span class="keyword">new</span> HasMap();</span><br><span class="line">	map.put(key,value);<span class="comment">//key不能重复</span></span><br><span class="line">	map.get(key);<span class="comment">//获取key对象的value</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="泛型："><a href="#泛型：" class="headerlink" title="泛型："></a>泛型：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;String&gt;();</span><br><span class="line">	Map&lt;String,String&gt; map=<span class="keyword">new</span> HasMap&lt;String,String&gt;();</span><br><span class="line">	ArrayList&lt;Map&lt;String,String&gt;&gt; list=<span class="keyword">new</span> ArrayList&gt;&lt;Map&lt;String,String&gt;&gt;();</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h4 id="写入文件："><a href="#写入文件：" class="headerlink" title="写入文件："></a>写入文件：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		Writer fw=<span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			fw=<span class="keyword">new</span> FileWriter(<span class="string">"d:/sample.txt"</span>);</span><br><span class="line">			<span class="comment">//写入信息</span></span><br><span class="line">			fw.write(<span class="string">"我热爱JAVA编程！"</span>);</span><br><span class="line">			fw.flush();<span class="comment">//刷新缓冲区</span></span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">if</span> (fw!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				fw.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="读取文件："><a href="#读取文件：" class="headerlink" title="读取文件："></a>读取文件：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>;<span class="comment">//读取单个字符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[]c)</span></span>;<span class="comment">//读取c.length长度的字符</span></span><br><span class="line">read(<span class="keyword">char</span>[]c,<span class="keyword">int</span> off,<span class="keyword">int</span> len);<span class="comment">//读取len的长度字符，保存到c中，保存位置从off位置开始，返回实际读取的字符长度</span></span><br><span class="line"><span class="keyword">void</span> close;<span class="comment">//关闭流</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程1</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> /*<span class="keyword">implements</span> <span class="title">Runnable</span>*/ <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			System.out.println(<span class="string">"开启了多线程1"</span>);		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//线程2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread1</span> /*<span class="keyword">implements</span> <span class="title">Runnable</span>*/<span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">			System.out.println(<span class="string">"开启了多线程2"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/*MyThread myThread=new MyThread();</span></span><br><span class="line"><span class="comment">		//myThread.run();</span></span><br><span class="line"><span class="comment">		new Thread(myThread).start();</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		MyThread1 myThread1=new MyThread1();</span></span><br><span class="line"><span class="comment">		//myThread1.run();</span></span><br><span class="line"><span class="comment">		new Thread(myThread1).start();*/</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*MyThread myThread=new MyThread();</span></span><br><span class="line"><span class="comment">		myThread.start();</span></span><br><span class="line"><span class="comment">		MyThread1 myThread1=new MyThread1();</span></span><br><span class="line"><span class="comment">		myThread1.start();*/</span></span><br><span class="line">		<span class="comment">//System.out.println("main:"+Thread.currentThread().getName());</span></span><br><span class="line">		Thread thread=<span class="keyword">new</span> Thread(<span class="string">"my线程"</span>)&#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(<span class="string">"新线程："</span>+Thread.currentThread().getName());</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="comment">//thread.run();</span></span><br><span class="line">		thread.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" itemprop="url">我的第一篇博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-10T19:57:01+08:00">
-                2019-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="我的第一篇博客"><a href="#我的第一篇博客" class="headerlink" title="我的第一篇博客"></a>我的第一篇博客</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.out.println(&quot;我的第一篇博客&quot;);</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%20%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
-
-  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
+<ul>
+    <li><div class="all active">全部文章<small>(6)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
-  <span class="post-meta-divider">|</span>
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
 
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+    <nav id="title-list-nav">
         
-      </div>
+        <a  class=""
+           href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Eclipse连接MySQL数据库">Eclipse连接MySQL数据库</span>
+            <span class="post-date" title="2019-10-30 18:02:31">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
+            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识JSP">初识JSP</span>
+            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
+            <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JAVA面向对象">JAVA面向对象</span>
+            <span class="post-date" title="2019-10-11 10:16:20">2019/10/11</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MMySQL数据库命令大全">MMySQL数据库命令大全</span>
+            <span class="post-date" title="2019-10-30 17:40:51">2019/10/30</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
     
-
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#about-me"><span class="toc-text">about me</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Like-every-little-attitude-you-have"><span class="toc-text">Like every little attitude you have</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#姓名：蒋俊杰"><span class="toc-text">姓名：蒋俊杰</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电话：13783332094"><span class="toc-text">电话：13783332094</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#邮箱：466623873-qq-com"><span class="toc-text">邮箱：466623873@qq.com</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#QQ：466623873"><span class="toc-text">QQ：466623873</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WX：jjj466623873"><span class="toc-text">WX：jjj466623873</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#出生日期：June-8-1999"><span class="toc-text">出生日期：June 8, 1999</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#地址：河南驻马店"><span class="toc-text">地址：河南驻马店</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#国家：China"><span class="toc-text">国家：China</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于这篇博客"><span class="toc-text">关于这篇博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="about-me"><a href="#about-me" class="headerlink" title="about me"></a>about me</h1><h2 id="Like-every-little-attitude-you-have"><a href="#Like-every-little-attitude-you-have" class="headerlink" title="Like every little attitude you have"></a>Like every little attitude you have</h2><h4 id="姓名：蒋俊杰"><a href="#姓名：蒋俊杰" class="headerlink" title="姓名：蒋俊杰"></a>姓名：蒋俊杰</h4><h4 id="电话：13783332094"><a href="#电话：13783332094" class="headerlink" title="电话：13783332094"></a>电话：13783332094</h4><h4 id="邮箱：466623873-qq-com"><a href="#邮箱：466623873-qq-com" class="headerlink" title="邮箱：466623873@qq.com"></a>邮箱：<a href="mailto:466623873@qq.com" target="_blank" rel="noopener">466623873@qq.com</a></h4><h4 id="QQ：466623873"><a href="#QQ：466623873" class="headerlink" title="QQ：466623873"></a>QQ：466623873</h4><h4 id="WX：jjj466623873"><a href="#WX：jjj466623873" class="headerlink" title="WX：jjj466623873"></a>WX：jjj466623873</h4><h4 id="出生日期：June-8-1999"><a href="#出生日期：June-8-1999" class="headerlink" title="出生日期：June 8, 1999"></a>出生日期：June 8, 1999</h4><h4 id="地址：河南驻马店"><a href="#地址：河南驻马店" class="headerlink" title="地址：河南驻马店"></a>地址：河南驻马店</h4><h4 id="国家：China"><a href="#国家：China" class="headerlink" title="国家：China"></a>国家：China</h4><p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于这篇博客"><a href="#关于这篇博客" class="headerlink" title="关于这篇博客"></a>关于这篇博客</h2><p><strong>3-hexo</strong> 是叶落阁的博客站。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank" rel="noopener">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
+<ul>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/' target="_blank" rel="noopener">3-hexo快捷键说明</a></li>
+</ul>
+
+        </article>
+        
+        <p>
+            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33418570&auto=1&height=66"></iframe>
+</div>
+
 </html>
