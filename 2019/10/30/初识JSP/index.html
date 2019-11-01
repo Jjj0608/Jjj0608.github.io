@@ -6,15 +6,14 @@
   <meta name="keywords" content="">
   <meta name="description" content="初识JSP | jer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta property="og:type" content="article">
-<meta property="og:title" content="初识JSP">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;%E5%88%9D%E8%AF%86JSP&#x2F;index.html">
+<meta name="description" content="Like every little attitude you have">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jer">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
 <meta property="og:site_name" content="jer">
+<meta property="og:description" content="Like every little attitude you have">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="d:%5Chexo%5Cblog%5Csource_posts%5C%E5%88%9D%E8%AF%86JSP%5C1.png">
-<meta property="og:updated_time" content="2019-10-30T13:46:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:%5Chexo%5Cblog%5Csource_posts%5C%E5%88%9D%E8%AF%86JSP%5C1.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -178,7 +177,7 @@
     <div class="friends-content">
         <ul>
             
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            <li><a target="_blank" href="http://jjj0608.github.io/">叶落阁</a></li>
             
         </ul>
     </div>
@@ -218,14 +217,6 @@
         </a>
         
         <a  class=""
-           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="初识JSP">初识JSP</span>
-            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
-        </a>
-        
-        <a  class=""
            href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
            data-tag=""
            data-author="" >
@@ -234,11 +225,11 @@
         </a>
         
         <a  class=""
-           href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="JAVA面向对象">JAVA面向对象</span>
-            <span class="post-date" title="2019-10-11 10:16:20">2019/10/11</span>
+            <span class="post-title" title="初识JSP">初识JSP</span>
+            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
         </a>
         
         <a  class=""
@@ -247,6 +238,14 @@
            data-author="" >
             <span class="post-title" title="MMySQL数据库命令大全">MMySQL数据库命令大全</span>
             <span class="post-date" title="2019-10-30 17:40:51">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JAVA面向对象">JAVA面向对象</span>
+            <span class="post-date" title="2019-10-11 10:16:20">2019/10/11</span>
         </a>
         
     </nav>
@@ -273,7 +272,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-10-30 21:46:24'>2019-10-30 18:52</time>
+        创建时间:<time class="date" title='更新时间: 2019-10-31 21:45:52'>2019-10-30 18:52</time>
         
     </div>
     <div class="article-meta">
@@ -295,7 +294,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"><span class="toc-text">Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四大域对象："><span class="toc-text">四大域对象：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#application、session、request、pageContext-域对象从大到小"><span class="toc-text">application、session、request、pageContext(域对象从大到小)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#绝对路径：相对于当前web站点的根目录路径"><span class="toc-text">绝对路径：相对于当前web站点的根目录路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#站点："><span class="toc-text">站点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#http-localhost-8080-这就是站点"><span class="toc-text">http://localhost:8080 这就是站点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Servlet03：当前web应用，就是contextpath"><span class="toc-text">/Servlet03：当前web应用，就是contextpath</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"><span class="toc-text">以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#：代表当前web应用的根目录-有时候代表当前web站点的根目录"><span class="toc-text">/：代表当前web应用的根目录 有时候代表当前web站点的根目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#代表当前web应用的根目录：请求转发"><span class="toc-text">代表当前web应用的根目录：请求转发</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#有时候代表当前web站点的根目录："><span class="toc-text">有时候代表当前web站点的根目录：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#web-xml中配置servlet映射代表当前web应用的根目录"><span class="toc-text">web.xml中配置servlet映射代表当前web应用的根目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ok，到此结束！"><span class="toc-text">ok，到此结束！</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -311,10 +310,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="D:%5Chexo%5Cblog%5Csource_posts%5C%E5%88%9D%E8%AF%86JSP%5C1.png" alt=""></p>
+        <h4 id="Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"><a href="#Jsp-本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码" class="headerlink" title="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码"></a>Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码</h4><p> <strong>jsp九大内置对象：</strong>就是没有声明就可以使用的对象 </p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*</span><br><span class="line"><span class="number">2</span>.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。</span><br><span class="line"><span class="number">3</span>.session:HttpSession对象，代表一次会话。*</span><br><span class="line"><span class="number">4</span>.application：ServletContext对象，代表当前web应用。*</span><br><span class="line"><span class="number">5</span>.config:ServletConfig对象，代表当前servlet，用于读取当前servlet配置信息。</span><br><span class="line"><span class="number">6</span>.out:JspWrite对象，调用print方法可以吧字符串输出到浏览器。</span><br><span class="line"><span class="number">7</span>.page：指的是当前jsp对应的servlet对象的引用。</span><br><span class="line"><span class="number">8</span>.PageContext:页面的上下文，可以获取其他<span class="number">8</span>个内置对象。*</span><br><span class="line"><span class="number">9</span>.exception:异常对象</span><br></pre></td></tr></table></figure>
 
+<h4 id="四大域对象："><a href="#四大域对象：" class="headerlink" title="四大域对象："></a><strong>四大域对象：</strong></h4><h5 id="application、session、request、pageContext-域对象从大到小"><a href="#application、session、request、pageContext-域对象从大到小" class="headerlink" title="application、session、request、pageContext(域对象从大到小)"></a>application、session、request、pageContext(域对象从大到小)</h5><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">application：最大与范围，范围限于当前web应用。</span><br><span class="line">session：范围限于一次会话，浏览器打开到关闭就是一次会话。</span><br><span class="line">request：范围限于一次请求。</span><br><span class="line">pageContext：范围限于当前页面。</span><br></pre></td></tr></table></figure>
+
+<h5 id="绝对路径：相对于当前web站点的根目录路径"><a href="#绝对路径：相对于当前web站点的根目录路径" class="headerlink" title="绝对路径：相对于当前web站点的根目录路径"></a>绝对路径：相对于当前web站点的根目录路径</h5><h5 id="站点："><a href="#站点：" class="headerlink" title="站点："></a>站点：</h5><p><a href="http://localhost:8080/Servlet03/a.jsp" target="_blank" rel="noopener">http://localhost:8080/Servlet03/a.jsp</a></p>
+<h5 id="http-localhost-8080-这就是站点"><a href="#http-localhost-8080-这就是站点" class="headerlink" title="http://localhost:8080 这就是站点"></a><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 这就是站点</h5><h5 id="Servlet03：当前web应用，就是contextpath"><a href="#Servlet03：当前web应用，就是contextpath" class="headerlink" title="/Servlet03：当前web应用，就是contextpath"></a>/Servlet03：当前web应用，就是contextpath</h5><h5 id="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"><a href="#以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径" class="headerlink" title="以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径"></a>以后我们需要在当前web应用的任何路径下都加上contextpath即可，这就是绝对路径</h5><h5 id="：代表当前web应用的根目录-有时候代表当前web站点的根目录"><a href="#：代表当前web应用的根目录-有时候代表当前web站点的根目录" class="headerlink" title="/：代表当前web应用的根目录 有时候代表当前web站点的根目录"></a>/：代表当前web应用的根目录 有时候代表当前web站点的根目录</h5><h5 id="代表当前web应用的根目录：请求转发"><a href="#代表当前web应用的根目录：请求转发" class="headerlink" title="代表当前web应用的根目录：请求转发"></a>代表当前web应用的根目录：请求转发</h5><h5 id="有时候代表当前web站点的根目录："><a href="#有时候代表当前web站点的根目录：" class="headerlink" title="有时候代表当前web站点的根目录："></a>有时候代表当前web站点的根目录：</h5><h5 id="web-xml中配置servlet映射代表当前web应用的根目录"><a href="#web-xml中配置servlet映射代表当前web应用的根目录" class="headerlink" title="web.xml中配置servlet映射代表当前web应用的根目录"></a>web.xml中配置servlet映射代表当前web应用的根目录</h5><h5 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h5><h4 id="ok，到此结束！"><a href="#ok，到此结束！" class="headerlink" title="ok，到此结束！"></a>ok，到此结束！</h4>
       
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 466623873@qq.com </span>
     </div>
 </article>
 
@@ -329,7 +333,7 @@
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="It&#39;s yours jie">It&#39;s yours jie</a></p>
     <p><span class="copy-title">发布时间:</span>2019-10-30, 18:52:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-10-30, 21:46:24</p>
+    <p><span class="copy-title">最后更新:</span>2019-10-31, 21:45:52</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/" title="初识JSP">http://yoursite.com/2019/10/30/%E5%88%9D%E8%AF%86JSP/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
