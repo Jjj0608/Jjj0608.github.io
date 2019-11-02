@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JSP中使用Cookies实现登陆信息的保存 | jer</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="JSP中使用Cookies实现登陆信息的保存 | jer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="（1）首先我们要知道Cookies是什么：1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差3、Cookies的产生：a、Cookies中是以（key，value）的形式保存数据的b、Cookies是由Java.servlet.http.Cookies类产生的c、常见方法：123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP中使用Cookies实现登陆信息的保存">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98&#x2F;index.html">
+<meta property="og:site_name" content="jer">
+<meta property="og:description" content="（1）首先我们要知道Cookies是什么：1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差3、Cookies的产生：a、Cookies中是以（key，value）的形式保存数据的b、Cookies是由Java.servlet.http.Cookies类产生的c、常见方法：123456">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;fbokF9uc4O5itsH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;ufIt6LjOiwqzolY.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;tz6YCIAFvoTk9iy.png">
+<meta property="og:updated_time" content="2019-11-02T11:51:52.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;fbokF9uc4O5itsH.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>It&#39;s yours jie</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/Jjj0608" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:466623873@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=466623873&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=466725003" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(7)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="7">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://jjj0608.github.io/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/11/02/JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP中使用Cookies实现登陆信息的保存">JSP中使用Cookies实现登陆信息的保存</span>
+            <span class="post-date" title="2019-11-02 19:16:36">2019/11/02</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Eclipse连接MySQL数据库">Eclipse连接MySQL数据库</span>
+            <span class="post-date" title="2019-10-30 18:02:31">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
+            <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
+            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识JSP">初识JSP</span>
+            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MMySQL数据库命令大全">MMySQL数据库命令大全</span>
+            <span class="post-date" title="2019-10-30 17:40:51">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JAVA面向对象">JAVA面向对象</span>
+            <span class="post-date" title="2019-10-11 10:16:20">2019/10/11</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-JSP中使用Cookies实现登陆信息的保存" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">JSP中使用Cookies实现登陆信息的保存</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-02 19:51:52'>2019-11-02 19:16</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#（1）首先我们要知道Cookies是什么："><span class="toc-text">（1）首先我们要知道Cookies是什么：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）"><span class="toc-text">1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差"><span class="toc-text">2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、Cookies的产生："><span class="toc-text">3、Cookies的产生：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#a、Cookies中是以（key，value）的形式保存数据的"><span class="toc-text">a、Cookies中是以（key，value）的形式保存数据的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#b、Cookies是由Java-servlet-http-Cookies类产生的"><span class="toc-text">b、Cookies是由Java.servlet.http.Cookies类产生的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#c、常见方法："><span class="toc-text">c、常见方法：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4、生成Cookie步骤："><span class="toc-text">4、生成Cookie步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#a、服务端准备Cookie：response-addCookie（Cookie-cookie）"><span class="toc-text">a、服务端准备Cookie：response.addCookie（Cookie cookie）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#b、页面跳转（请求转发，重定向）"><span class="toc-text">b、页面跳转（请求转发，重定向）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#c、客户端获取Cookie：request-getCookie（）；"><span class="toc-text">c、客户端获取Cookie：request.getCookie（）；</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意："><span class="toc-text">注意：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a、服务端增加Cookie：request对象，客户端获取对象：response对象"><span class="toc-text">a、服务端增加Cookie：request对象，客户端获取对象：response对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。"><span class="toc-text">b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）是不是感觉有点迷，让我们看一下代码就了解了："><span class="toc-text">（2）是不是感觉有点迷，让我们看一下代码就了解了：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、先创建一个-login-jsp"><span class="toc-text">1、先创建一个 login.jsp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、-check-jsp"><span class="toc-text">2、 check.jsp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、A-jsp"><span class="toc-text">3、A.jsp</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果："><span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。"><span class="toc-text">从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="（1）首先我们要知道Cookies是什么："><a href="#（1）首先我们要知道Cookies是什么：" class="headerlink" title="（1）首先我们要知道Cookies是什么："></a>（1）首先我们要知道Cookies是什么：</h4><h5 id="1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）"><a href="#1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）" class="headerlink" title="1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）"></a>1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）</h5><h5 id="2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差"><a href="#2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差" class="headerlink" title="2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差"></a>2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差</h5><h5 id="3、Cookies的产生："><a href="#3、Cookies的产生：" class="headerlink" title="3、Cookies的产生："></a>3、Cookies的产生：</h5><h6 id="a、Cookies中是以（key，value）的形式保存数据的"><a href="#a、Cookies中是以（key，value）的形式保存数据的" class="headerlink" title="a、Cookies中是以（key，value）的形式保存数据的"></a>a、Cookies中是以（key，value）的形式保存数据的</h6><h6 id="b、Cookies是由Java-servlet-http-Cookies类产生的"><a href="#b、Cookies是由Java-servlet-http-Cookies类产生的" class="headerlink" title="b、Cookies是由Java.servlet.http.Cookies类产生的"></a>b、Cookies是由Java.servlet.http.Cookies类产生的</h6><h6 id="c、常见方法："><a href="#c、常见方法：" class="headerlink" title="c、常见方法："></a>c、常见方法：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Cookie（String name，String value）Cookie构造器</span><br><span class="line"></span><br><span class="line">  String getName（）获得key值</span><br><span class="line"></span><br><span class="line">  String getValue（）获得value值</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> setMaxAge（<span class="keyword">int</span> expiry）Cookie最大有效期</span><br><span class="line"></span><br><span class="line">  response.addCookie（Cookie cookie）用于服务端产生Cookie</span><br><span class="line"></span><br><span class="line">  request。getCookie（Cookie cookie）用于客户端获得Cookie</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、生成Cookie步骤："><a href="#4、生成Cookie步骤：" class="headerlink" title="4、生成Cookie步骤："></a>4、生成Cookie步骤：</h5><h6 id="a、服务端准备Cookie：response-addCookie（Cookie-cookie）"><a href="#a、服务端准备Cookie：response-addCookie（Cookie-cookie）" class="headerlink" title="a、服务端准备Cookie：response.addCookie（Cookie cookie）"></a>a、服务端准备Cookie：response.addCookie（Cookie cookie）</h6><h6 id="b、页面跳转（请求转发，重定向）"><a href="#b、页面跳转（请求转发，重定向）" class="headerlink" title="b、页面跳转（请求转发，重定向）"></a>b、页面跳转（请求转发，重定向）</h6><h6 id="c、客户端获取Cookie：request-getCookie（）；"><a href="#c、客户端获取Cookie：request-getCookie（）；" class="headerlink" title="c、客户端获取Cookie：request.getCookie（）；"></a>c、客户端获取Cookie：request.getCookie（）；</h6><h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><h5 id="a、服务端增加Cookie：request对象，客户端获取对象：response对象"><a href="#a、服务端增加Cookie：request对象，客户端获取对象：response对象" class="headerlink" title="a、服务端增加Cookie：request对象，客户端获取对象：response对象"></a>a、服务端增加Cookie：request对象，客户端获取对象：response对象</h5><h5 id="b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。"><a href="#b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。" class="headerlink" title="b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。"></a>b、不能直接获取某一对象，只能一次将全部Cookie对象获取到。</h5><h4 id="（2）是不是感觉有点迷，让我们看一下代码就了解了："><a href="#（2）是不是感觉有点迷，让我们看一下代码就了解了：" class="headerlink" title="（2）是不是感觉有点迷，让我们看一下代码就了解了："></a>（2）是不是感觉有点迷，让我们看一下代码就了解了：</h4><h5 id="1、先创建一个-login-jsp"><a href="#1、先创建一个-login-jsp" class="headerlink" title="1、先创建一个 login.jsp"></a>1、先创建一个 login.jsp</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;登录&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;%!</span><br><span class="line">      String name;</span><br><span class="line">   %&gt;</span><br><span class="line">   &lt;%</span><br><span class="line">       <span class="comment">//获得已存在客户端中cookie</span></span><br><span class="line">       <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">       Cookie cookies[]=request.getCookies();</span><br><span class="line">       <span class="keyword">for</span>(Cookie cookie:cookies)&#123;</span><br><span class="line">           <span class="keyword">if</span>(cookie.getName().equals(<span class="string">"uname"</span>))&#123;</span><br><span class="line">               name=cookie.getValue();</span><br><span class="line">               flag=<span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">           out.println(<span class="string">"cookie已失效"</span>);</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           out.println(<span class="string">"cookie+"</span>+name);</span><br><span class="line">       &#125;</span><br><span class="line">   %&gt;</span><br><span class="line">    &lt;form action=<span class="string">"check.jsp"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        用户名: &lt;input type=<span class="string">"text"</span> name=<span class="string">"uname"</span> value=<span class="string">"&lt;%=(name==null?"</span><span class="string">":name)%&gt;"</span> &gt;&lt;br/&gt;</span><br><span class="line">        密码: &lt;input type=<span class="string">"password"</span> name=<span class="string">"upwd"</span> &gt;&lt;br/&gt;</span><br><span class="line">              &lt;input type=<span class="string">"submit"</span> value=<span class="string">"登录"</span>&gt;&lt;br/&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、-check-jsp"><a href="#2、-check-jsp" class="headerlink" title="2、 check.jsp"></a>2、 check.jsp</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">      &lt;%</span><br><span class="line">          request.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">          String name=request.getParameter(<span class="string">"uname"</span>);</span><br><span class="line">          Cookie cookie=<span class="keyword">new</span> Cookie(<span class="string">"uname"</span>,name);<span class="comment">//没有无参构造器</span></span><br><span class="line">          <span class="comment">//增加cookie</span></span><br><span class="line">          cookie.setMaxAge(<span class="number">10</span>);</span><br><span class="line">          response.addCookie(cookie);</span><br><span class="line">          <span class="comment">//转发cookie</span></span><br><span class="line">          response.sendRedirect(<span class="string">"A.jsp"</span>);<span class="comment">//这里我感觉是往客户端发，由于我们是在电脑上操作的，客户端和服务端其实是在一个机子上的</span></span><br><span class="line">      %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、A-jsp"><a href="#3、A-jsp" class="headerlink" title="3、A.jsp"></a>3、A.jsp</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h4><img src="https://i.loli.net/2019/11/02/fbokF9uc4O5itsH.png" alt="blob" style="zoom:100%;" />
+
+<p><img src="https://i.loli.net/2019/11/02/ufIt6LjOiwqzolY.png" alt="blob"></p>
+<p><img src="https://i.loli.net/2019/11/02/tz6YCIAFvoTk9iy.png" alt="blob"></p>
+<h4 id="从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。"><a href="#从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。" class="headerlink" title="从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。"></a>从最后一张结果我们可以看到第一次登陆之后，用户名的值就存在客户端中，再次登录时，用户名已有记录。</h4>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 466623873@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>JSP中使用Cookies实现登陆信息的保存</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="It&#39;s yours jie">It&#39;s yours jie</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-02, 19:16:36</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-02, 19:51:52</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/02/JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98/" title="JSP中使用Cookies实现登陆信息的保存">http://yoursite.com/2019/11/02/JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33418570&auto=1&height=66"></iframe>
+</div>
+
+</html>

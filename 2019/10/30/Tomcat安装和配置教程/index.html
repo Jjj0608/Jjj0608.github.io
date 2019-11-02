@@ -6,14 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="Tomcat安装和配置教程 | jer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Like every little attitude you have">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jer">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;index.html">
+<meta name="description" content="（1）首先我们要知道Cookies是什么：1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差3、Cookies的产生：a、Cookies中是以（key，value）的形式保存数据的b、Cookies是由Java.servlet.http.Cookies类产生的c、常见方法：123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP中使用Cookies实现登陆信息的保存">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98&#x2F;index.html">
 <meta property="og:site_name" content="jer">
-<meta property="og:description" content="Like every little attitude you have">
+<meta property="og:description" content="（1）首先我们要知道Cookies是什么：1、Cookies不是内置对象，它是由服务端生成的，再发送给客户端保存。（相当于本地缓存的作用）2、Cookies的作用：提高访问服务端的效率，但是它的安全性比较差3、Cookies的产生：a、Cookies中是以（key，value）的形式保存数据的b、Cookies是由Java.servlet.http.Cookies类产生的c、常见方法：123456">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;fbokF9uc4O5itsH.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;ufIt6LjOiwqzolY.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;tz6YCIAFvoTk9iy.png">
+<meta property="og:updated_time" content="2019-11-02T11:51:52.314Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;i.loli.net&#x2F;2019&#x2F;11&#x2F;02&#x2F;fbokF9uc4O5itsH.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -148,7 +153,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(6)</small></div></li>
+    <li><div class="all active">全部文章<small>(7)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -160,7 +165,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="6">
+<input type="hidden" id="yelog_site_posts_number" value="7">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -201,6 +206,14 @@
     <nav id="title-list-nav">
         
         <a  class=""
+           href="/2019/11/02/JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP中使用Cookies实现登陆信息的保存">JSP中使用Cookies实现登陆信息的保存</span>
+            <span class="post-date" title="2019-11-02 19:16:36">2019/11/02</span>
+        </a>
+        
+        <a  class=""
            href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
            data-tag=""
            data-author="" >
@@ -209,19 +222,19 @@
         </a>
         
         <a  class=""
-           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
-            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
-        </a>
-        
-        <a  class=""
            href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
             <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
+            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
         </a>
         
         <a  class=""
