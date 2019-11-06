@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>使用Github搭建个人博客 | jer</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="使用Github搭建个人博客 | jer">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码 jsp九大内置对象：就是没有声明就可以使用的对象  1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。3.sess">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识JSP">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;%E5%88%9D%E8%AF%86JSP&#x2F;index.html">
+<meta property="og:site_name" content="jer">
+<meta property="og:description" content="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码 jsp九大内置对象：就是没有声明就可以使用的对象  1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。3.sess">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-31T13:45:52.000Z">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="true">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>It&#39;s yours jie</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/Jjj0608" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:466623873@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=466623873&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=466725003" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(10)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="10">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://jjj0608.github.io/">致敬</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/11/05/JSP-request%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP request内置对象">JSP request内置对象</span>
+            <span class="post-date" title="2019-11-05 09:54:55">2019/11/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/05/JSP-response%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP response内置对象">JSP response内置对象</span>
+            <span class="post-date" title="2019-11-05 10:11:52">2019/11/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
+            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Eclipse连接MySQL数据库">Eclipse连接MySQL数据库</span>
+            <span class="post-date" title="2019-10-30 18:02:31">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
+            <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识JSP">初识JSP</span>
+            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/02/JSP%E4%B8%AD%E4%BD%BF%E7%94%A8Cookies%E5%AE%9E%E7%8E%B0%E7%99%BB%E9%99%86%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BF%9D%E5%AD%98/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP中使用Cookies实现登陆信息的保存">JSP中使用Cookies实现登陆信息的保存</span>
+            <span class="post-date" title="2019-11-02 19:16:36">2019/11/02</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JAVA面向对象">JAVA面向对象</span>
+            <span class="post-date" title="2019-10-11 10:16:20">2019/10/11</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/05/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用Github搭建个人博客">使用Github搭建个人博客</span>
+            <span class="post-date" title="2019-11-05 20:28:36">2019/11/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MMySQL数据库命令大全">MMySQL数据库命令大全</span>
+            <span class="post-date" title="2019-10-30 17:40:51">2019/10/30</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-使用Github搭建个人博客" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">使用Github搭建个人博客</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-11-06 10:04:42'>2019-11-05 20:28</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、前期准备"><span class="toc-text">一、前期准备</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、GitHub账号"><span class="toc-text">1、GitHub账号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、Node-js环境"><span class="toc-text">2、Node.js环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、Git-软件"><span class="toc-text">3、Git 软件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、软件安装"><span class="toc-text">二、软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-、注册GitHub账号"><span class="toc-text">(1)、注册GitHub账号</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1，Github账户注册和新建项目，项目必须要遵守格式：账户名-github-io，此处账号名作为后期个人博客的地址使用"><span class="toc-text">1，Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，此处账号名作为后期个人博客的地址使用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2，并且需要勾选Initialize-this-repository-with-a-README。（如果没有勾选，后期要创建README文件即可"><span class="toc-text">2，并且需要勾选Initialize this repository with a README。（如果没有勾选，后期要创建README文件即可</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、创建一个新的repository-代码仓库-注意，名称必须是xxx-github-io-格式，并且xxx必须是你在GitHub的用户名"><span class="toc-text">2、创建一个新的repository(代码仓库), 注意，名称必须是xxx.github.io 格式，并且xxx必须是你在GitHub的用户名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub-Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它"><span class="toc-text">3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（2）、安装Node-js"><span class="toc-text">（2）、安装Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#在node-js指定地址下载，采用最新的版本即可。"><span class="toc-text">在node.js指定地址下载，采用最新的版本即可。</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#本文实例以v10-16-3-版本为例，其他版本类似，-安装步骤："><span class="toc-text">本文实例以v10.16.3 版本为例，其他版本类似， 安装步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-1-双击下载后的安装包-v10-16-3，如下所示："><span class="toc-text">步骤 1 : 双击下载后的安装包 v10.16.3，如下所示：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-2-点击以上的Run-运行-，将出现如下界面："><span class="toc-text">步骤 2 : 点击以上的Run(运行)，将出现如下界面：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-3-勾选接受协议选项，点击-next（下一步）-按钮"><span class="toc-text">步骤 3 : 勾选接受协议选项，点击 next（下一步） 按钮 :</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-4-Node-js默认安装目录为-“C-Program-Files-nodejs-quot-你可以修改目录，并点击-next（下一步）："><span class="toc-text">步骤 4 : Node.js默认安装目录为 “C:\Program Files\nodejs&quot; , 你可以修改目录，并点击 next（下一步）：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-5-点击树形图标来选择你需要的安装模式-然后点击下一步-next（下一步）："><span class="toc-text">步骤 5 : 点击树形图标来选择你需要的安装模式 , 然后点击下一步 next（下一步）：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤-6-点击-Install（安装）-开始安装Node-js。你也可以点击-Back（返回）来修改先前的配置。-然后并点击-next（下一步）："><span class="toc-text">步骤 6 :点击 Install（安装） 开始安装Node.js。你也可以点击 Back（返回）来修改先前的配置。 然后并点击 next（下一步）：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装过程："><span class="toc-text">安装过程：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#点击-Finish（完成）按钮退出安装向导。"><span class="toc-text">点击 Finish（完成）按钮退出安装向导。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#检查Node-js版本"><span class="toc-text">检查Node.js版本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#（3）、安装Git"><span class="toc-text">（3）、安装Git</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#指定位置，进行下载"><span class="toc-text">指定位置，进行下载</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2-23-0-64-bit-exe"><span class="toc-text">步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2.23.0-64-bit.exe</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤2：点击git-exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录"><span class="toc-text">步骤2：点击git.exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤3：继续点击“Next”，显示截图如下："><span class="toc-text">步骤3：继续点击“Next”，显示截图如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤4：-选择完之后，点击“Next”，显示截图如下："><span class="toc-text">步骤4：.选择完之后，点击“Next”，显示截图如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤5：-点击“Next”，显示截图如下："><span class="toc-text">步骤5：.点击“Next”，显示截图如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤6：继续点击“Next”，设置环境变量"><span class="toc-text">步骤6：继续点击“Next”，设置环境变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤7：选择之后，继续点击“Next”，显示如下："><span class="toc-text">步骤7：选择之后，继续点击“Next”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤8：选择之后，继续点击“Next”，显示如下："><span class="toc-text">步骤8：选择之后，继续点击“Next”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤9：选择之后，继续点击“Next”，显示如下："><span class="toc-text">步骤9：选择之后，继续点击“Next”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤10：-选择之后，继续点击“Next”，显示如下："><span class="toc-text">步骤10：.选择之后，继续点击“Next”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤11：选择之后，继续点击“Next”，显示如下："><span class="toc-text">步骤11：选择之后，继续点击“Next”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤12：选择之后，点击“Install”，显示如下："><span class="toc-text">步骤12：选择之后，点击“Install”，显示如下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#步骤13：安装完毕后，点击“finish”"><span class="toc-text">步骤13：安装完毕后，点击“finish”</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#验证是否安装成功，在桌面上点击鼠标右键，点击Git-Bash-Here，弹出交互界面，表示正确安装成功！"><span class="toc-text">验证是否安装成功，在桌面上点击鼠标右键，点击Git Bash Here，弹出交互界面，表示正确安装成功！</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Hexo配置流程"><span class="toc-text">三、Hexo配置流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、安装Hexo"><span class="toc-text">1、安装Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#新建文件夹hexo"><span class="toc-text">新建文件夹hexo</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、安装hexo基础框架"><span class="toc-text">2、安装hexo基础框架</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#第一步：npm-install-hexo-cli-g"><span class="toc-text">第一步：npm install hexo-cli -g</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第二步：hexo-init-blog"><span class="toc-text">第二步：hexo init blog</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第三步：cd-blog"><span class="toc-text">第三步：cd blog</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第四步：npm-install"><span class="toc-text">第四步：npm install</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第五步：hexo-g"><span class="toc-text">第五步：hexo g</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#第六步：hexo-s"><span class="toc-text">第六步：hexo s</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、部署到GitHub服务器"><span class="toc-text">四、部署到GitHub服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1、使用git命令行部署（optional）"><span class="toc-text">1、使用git命令行部署（optional）</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h3><h5 id="1、GitHub账号"><a href="#1、GitHub账号" class="headerlink" title="1、GitHub账号"></a>1、GitHub账号</h5><p>注册地址：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
+<h5 id="2、Node-js环境"><a href="#2、Node-js环境" class="headerlink" title="2、Node.js环境"></a>2、Node.js环境</h5><p>下载地址：<a href="https://nodejs.org/download/" target="_blank" rel="noopener">https://nodejs.org/download/</a></p>
+<h5 id="3、Git-软件"><a href="#3、Git-软件" class="headerlink" title="3、Git 软件"></a>3、Git 软件</h5><p>下载地址<a href="http://git-scm.com/download" target="_blank" rel="noopener">http://git-scm.com/download</a></p>
+<h3 id="二、软件安装"><a href="#二、软件安装" class="headerlink" title="二、软件安装"></a>二、软件安装</h3><h4 id="1-、注册GitHub账号"><a href="#1-、注册GitHub账号" class="headerlink" title="(1)、注册GitHub账号"></a>(1)、注册GitHub账号</h4><h6 id="1，Github账户注册和新建项目，项目必须要遵守格式：账户名-github-io，此处账号名作为后期个人博客的地址使用"><a href="#1，Github账户注册和新建项目，项目必须要遵守格式：账户名-github-io，此处账号名作为后期个人博客的地址使用" class="headerlink" title="1，Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，此处账号名作为后期个人博客的地址使用"></a>1，Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，此处账号名作为后期个人博客的地址使用</h6><h6 id="2，并且需要勾选Initialize-this-repository-with-a-README。（如果没有勾选，后期要创建README文件即可"><a href="#2，并且需要勾选Initialize-this-repository-with-a-README。（如果没有勾选，后期要创建README文件即可" class="headerlink" title="2，并且需要勾选Initialize this repository with a README。（如果没有勾选，后期要创建README文件即可"></a>2，并且需要勾选Initialize this repository with a README。（如果没有勾选，后期要创建README文件即可</h6><p><img src="https://i.loli.net/2019/11/05/ZhAFTxJ4XLv1Rob.png" alt="image.png"></p>
+<h5 id="2、创建一个新的repository-代码仓库-注意，名称必须是xxx-github-io-格式，并且xxx必须是你在GitHub的用户名"><a href="#2、创建一个新的repository-代码仓库-注意，名称必须是xxx-github-io-格式，并且xxx必须是你在GitHub的用户名" class="headerlink" title="2、创建一个新的repository(代码仓库), 注意，名称必须是xxx.github.io 格式，并且xxx必须是你在GitHub的用户名"></a>2、创建一个新的repository(代码仓库), 注意，名称必须是xxx.github.io 格式，并且xxx必须是你在GitHub的用户名</h5><p><img src="https://i.loli.net/2019/11/05/aCpSlZekHsnwLGO.png" alt="image.png"></p>
+<h5 id="3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub-Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它"><a href="#3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub-Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它" class="headerlink" title="3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它"></a>3、在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，可以访问它。你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它</h5><p><img src="https://i.loli.net/2019/11/05/aZlw9S3EtWTrxVz.png" alt="image.png"></p>
+<h4 id="（2）、安装Node-js"><a href="#（2）、安装Node-js" class="headerlink" title="（2）、安装Node.js"></a>（2）、安装Node.js</h4><h6 id="在node-js指定地址下载，采用最新的版本即可。"><a href="#在node-js指定地址下载，采用最新的版本即可。" class="headerlink" title="在node.js指定地址下载，采用最新的版本即可。"></a>在node.js指定地址下载，采用最新的版本即可。</h6><p><img src="C:%5CUsers%5CVULCAN%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572957978356.png" alt="1572957978356"></p>
+<h5 id="本文实例以v10-16-3-版本为例，其他版本类似，-安装步骤："><a href="#本文实例以v10-16-3-版本为例，其他版本类似，-安装步骤：" class="headerlink" title="本文实例以v10.16.3 版本为例，其他版本类似， 安装步骤："></a>本文实例以v10.16.3 版本为例，其他版本类似， 安装步骤：</h5><h6 id="步骤-1-双击下载后的安装包-v10-16-3，如下所示："><a href="#步骤-1-双击下载后的安装包-v10-16-3，如下所示：" class="headerlink" title="步骤 1 : 双击下载后的安装包 v10.16.3，如下所示："></a>步骤 1 : 双击下载后的安装包 v10.16.3，如下所示：</h6><p><img src="https://i.loli.net/2019/11/05/RjNhAsaWqXf5u6F.png" alt="image.png"></p>
+<h6 id="步骤-2-点击以上的Run-运行-，将出现如下界面："><a href="#步骤-2-点击以上的Run-运行-，将出现如下界面：" class="headerlink" title="步骤 2 : 点击以上的Run(运行)，将出现如下界面："></a>步骤 2 : 点击以上的Run(运行)，将出现如下界面：</h6><p><img src="https://i.loli.net/2019/11/05/lkcatqZ8MPNmpHI.png" alt="image.png"></p>
+<h6 id="步骤-3-勾选接受协议选项，点击-next（下一步）-按钮"><a href="#步骤-3-勾选接受协议选项，点击-next（下一步）-按钮" class="headerlink" title="步骤 3 : 勾选接受协议选项，点击 next（下一步） 按钮 :"></a>步骤 3 : 勾选接受协议选项，点击 next（下一步） 按钮 :</h6><p><img src="https://i.loli.net/2019/11/05/lsuwhcP8UTraDA2.png" alt="image.png"></p>
+<h6 id="步骤-4-Node-js默认安装目录为-“C-Program-Files-nodejs-quot-你可以修改目录，并点击-next（下一步）："><a href="#步骤-4-Node-js默认安装目录为-“C-Program-Files-nodejs-quot-你可以修改目录，并点击-next（下一步）：" class="headerlink" title="步骤 4 : Node.js默认安装目录为 “C:\Program Files\nodejs&quot; , 你可以修改目录，并点击 next（下一步）："></a>步骤 4 : Node.js默认安装目录为 “C:\Program Files\nodejs&quot; , 你可以修改目录，并点击 next（下一步）：</h6><p><img src="https://i.loli.net/2019/11/05/18wg5m9LoCWMJnY.png" alt="image.png"></p>
+<h6 id="步骤-5-点击树形图标来选择你需要的安装模式-然后点击下一步-next（下一步）："><a href="#步骤-5-点击树形图标来选择你需要的安装模式-然后点击下一步-next（下一步）：" class="headerlink" title="步骤 5 : 点击树形图标来选择你需要的安装模式 , 然后点击下一步 next（下一步）："></a>步骤 5 : 点击树形图标来选择你需要的安装模式 , 然后点击下一步 next（下一步）：</h6><p><img src="https://i.loli.net/2019/11/05/4XZFaUnpWStjGHx.png" alt="image.png"></p>
+<h6 id="步骤-6-点击-Install（安装）-开始安装Node-js。你也可以点击-Back（返回）来修改先前的配置。-然后并点击-next（下一步）："><a href="#步骤-6-点击-Install（安装）-开始安装Node-js。你也可以点击-Back（返回）来修改先前的配置。-然后并点击-next（下一步）：" class="headerlink" title="步骤 6 :点击 Install（安装） 开始安装Node.js。你也可以点击 Back（返回）来修改先前的配置。 然后并点击 next（下一步）："></a>步骤 6 :点击 Install（安装） 开始安装Node.js。你也可以点击 Back（返回）来修改先前的配置。 然后并点击 next（下一步）：</h6><p><img src="https://i.loli.net/2019/11/05/4w8DrpAZY2jMatT.png" alt="image.png"></p>
+<h6 id="安装过程："><a href="#安装过程：" class="headerlink" title="安装过程："></a>安装过程：</h6><p><img src="https://i.loli.net/2019/11/05/5Z683zISHx7bkoa.png" alt="image.png"></p>
+<h6 id="点击-Finish（完成）按钮退出安装向导。"><a href="#点击-Finish（完成）按钮退出安装向导。" class="headerlink" title="点击 Finish（完成）按钮退出安装向导。"></a>点击 Finish（完成）按钮退出安装向导。</h6><p><img src="https://i.loli.net/2019/11/05/8FPecbaBifr4pZJ.png" alt="image.png"></p>
+<h6 id="检查Node-js版本"><a href="#检查Node-js版本" class="headerlink" title="检查Node.js版本"></a>检查Node.js版本</h6><p><img src="https://i.loli.net/2019/11/05/v1hlVJWCLSq9y6c.png" alt="image.png"></p>
+<h4 id="（3）、安装Git"><a href="#（3）、安装Git" class="headerlink" title="（3）、安装Git"></a>（3）、安装Git</h4><h6 id="指定位置，进行下载"><a href="#指定位置，进行下载" class="headerlink" title="指定位置，进行下载"></a>指定位置，进行下载</h6><p><img src="https://i.loli.net/2019/11/05/UzWaqLHhNc9182m.png" alt="image.png"></p>
+<h6 id="步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2-23-0-64-bit-exe"><a href="#步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2-23-0-64-bit-exe" class="headerlink" title="步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2.23.0-64-bit.exe"></a>步骤1：从git官网下一个git安装包并安装。这里以64位讲解Git-2.23.0-64-bit.exe</h6><p><img src="https://i.loli.net/2019/11/05/xbNdXHi4evhCYcI.png" alt="image.png"></p>
+<h6 id="步骤2：点击git-exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录"><a href="#步骤2：点击git-exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录" class="headerlink" title="步骤2：点击git.exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录"></a>步骤2：点击git.exe安装程序，点击【next】，根据自己的情况，选择程序的安装目录</h6><p><img src="https://i.loli.net/2019/11/05/3dQr5vot6U8uAcg.png" alt="image.png"></p>
+<h6 id="步骤3：继续点击“Next”，显示截图如下："><a href="#步骤3：继续点击“Next”，显示截图如下：" class="headerlink" title="步骤3：继续点击“Next”，显示截图如下："></a>步骤3：继续点击“Next”，显示截图如下：</h6><p><img src="https://i.loli.net/2019/11/05/PgtiOumJqnBbK4v.png" alt="image.png"></p>
+<h6 id="步骤4：-选择完之后，点击“Next”，显示截图如下："><a href="#步骤4：-选择完之后，点击“Next”，显示截图如下：" class="headerlink" title="步骤4：.选择完之后，点击“Next”，显示截图如下："></a>步骤4：.选择完之后，点击“Next”，显示截图如下：</h6><p><img src="https://i.loli.net/2019/11/05/mbgC8H4KwQUMBhl.png" alt="image.png"></p>
+<h6 id="步骤5：-点击“Next”，显示截图如下："><a href="#步骤5：-点击“Next”，显示截图如下：" class="headerlink" title="步骤5：.点击“Next”，显示截图如下："></a>步骤5：.点击“Next”，显示截图如下：</h6><p><img src="https://i.loli.net/2019/11/05/uXlsLY3zGkfpWoQ.png" alt="image.png"></p>
+<p><em>选择编辑器，看自己喜好。</em></p>
+<h6 id="步骤6：继续点击“Next”，设置环境变量"><a href="#步骤6：继续点击“Next”，设置环境变量" class="headerlink" title="步骤6：继续点击“Next”，设置环境变量"></a>步骤6：继续点击“Next”，设置环境变量</h6><p><img src="https://i.loli.net/2019/11/05/JoP9hRAvOIB2lcz.png" alt="image.png"></p>
+<h6 id="步骤7：选择之后，继续点击“Next”，显示如下："><a href="#步骤7：选择之后，继续点击“Next”，显示如下：" class="headerlink" title="步骤7：选择之后，继续点击“Next”，显示如下："></a>步骤7：选择之后，继续点击“Next”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/DEymeb1LfYFt9Ku.png" alt="sdsd.png"></p>
+<h6 id="步骤8：选择之后，继续点击“Next”，显示如下："><a href="#步骤8：选择之后，继续点击“Next”，显示如下：" class="headerlink" title="步骤8：选择之后，继续点击“Next”，显示如下："></a>步骤8：选择之后，继续点击“Next”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/fJhB7FldSLZqGo4.png" alt="image.png"></p>
+<h6 id="步骤9：选择之后，继续点击“Next”，显示如下："><a href="#步骤9：选择之后，继续点击“Next”，显示如下：" class="headerlink" title="步骤9：选择之后，继续点击“Next”，显示如下："></a>步骤9：选择之后，继续点击“Next”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/qrIVGbsMxu1f7XW.png" alt="image.png"></p>
+<h6 id="步骤10：-选择之后，继续点击“Next”，显示如下："><a href="#步骤10：-选择之后，继续点击“Next”，显示如下：" class="headerlink" title="步骤10：.选择之后，继续点击“Next”，显示如下："></a>步骤10：.选择之后，继续点击“Next”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/IuqzECZiHfKaU82.png" alt="image.png"></p>
+<h6 id="步骤11：选择之后，继续点击“Next”，显示如下："><a href="#步骤11：选择之后，继续点击“Next”，显示如下：" class="headerlink" title="步骤11：选择之后，继续点击“Next”，显示如下："></a>步骤11：选择之后，继续点击“Next”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/tHXZcvFb5BiMO73.png" alt="image.png"></p>
+<h6 id="步骤12：选择之后，点击“Install”，显示如下："><a href="#步骤12：选择之后，点击“Install”，显示如下：" class="headerlink" title="步骤12：选择之后，点击“Install”，显示如下："></a>步骤12：选择之后，点击“Install”，显示如下：</h6><p><img src="https://i.loli.net/2019/11/05/SVzAoiWpxUP8fZm.png" alt="image.png"></p>
+<h6 id="步骤13：安装完毕后，点击“finish”"><a href="#步骤13：安装完毕后，点击“finish”" class="headerlink" title="步骤13：安装完毕后，点击“finish”"></a>步骤13：安装完毕后，点击“finish”</h6><p><img src="https://i.loli.net/2019/11/05/YInU9Ew28KDTN6o.png" alt="image.png"></p>
+<h6 id="验证是否安装成功，在桌面上点击鼠标右键，点击Git-Bash-Here，弹出交互界面，表示正确安装成功！"><a href="#验证是否安装成功，在桌面上点击鼠标右键，点击Git-Bash-Here，弹出交互界面，表示正确安装成功！" class="headerlink" title="验证是否安装成功，在桌面上点击鼠标右键，点击Git Bash Here，弹出交互界面，表示正确安装成功！"></a>验证是否安装成功，在桌面上点击鼠标右键，点击Git Bash Here，弹出交互界面，表示正确安装成功！</h6><p><img src="https://i.loli.net/2019/11/05/PybLpNzrZRqknjx.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/05/B9kGgDIqYmMoHs5.png" alt="image.png"></p>
+<h3 id="三、Hexo配置流程"><a href="#三、Hexo配置流程" class="headerlink" title="三、Hexo配置流程"></a>三、Hexo配置流程</h3><h4 id="1、安装Hexo"><a href="#1、安装Hexo" class="headerlink" title="1、安装Hexo"></a>1、安装Hexo</h4><p>Hexo 是一款基于 Node.js 的静态博客框架。Hexo 使用 Markdown 解析文章，用户在本地安装Hexo并进行写作，通过一条命令，Hexo即可利用靓丽的主题自动生成静态网页。</p>
+<h6 id="新建文件夹hexo"><a href="#新建文件夹hexo" class="headerlink" title="新建文件夹hexo"></a>新建文件夹hexo</h6><p>首先创建一个文件夹，用来存放Hexo模板和项目，然后进入 hexo 文件夹，鼠标右键点击Git Bash Here。 </p>
+<p><img src="https://i.loli.net/2019/11/05/hCd2tk1oSLuY36N.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/06/CB8xKYGQRTmlbh2.png" alt="image.png"></p>
+<h4 id="2、安装hexo基础框架"><a href="#2、安装hexo基础框架" class="headerlink" title="2、安装hexo基础框架"></a>2、安装hexo基础框架</h4><p><em>这是安装hexo的基础框架（此处要求已经安装了node.js环境）</em></p>
+<h6 id="第一步：npm-install-hexo-cli-g"><a href="#第一步：npm-install-hexo-cli-g" class="headerlink" title="第一步：npm install hexo-cli -g"></a>第一步：npm install hexo-cli -g</h6><p><img src="https://i.loli.net/2019/11/06/3E49V7XGCL1QOkN.png" alt="image.png"></p>
+<h6 id="第二步：hexo-init-blog"><a href="#第二步：hexo-init-blog" class="headerlink" title="第二步：hexo init blog"></a>第二步：hexo init blog</h6><p><img src="https://i.loli.net/2019/11/06/V7kOMNEu5nBbXDt.png" alt="image.png"></p>
+<p><em>它就会在当前目录下生成一个blog的文件夹，并在里面生成相关配置信息。</em></p>
+<h6 id="第三步：cd-blog"><a href="#第三步：cd-blog" class="headerlink" title="第三步：cd blog"></a>第三步：cd blog</h6><p>切换到blog目录下</p>
+<p><img src="https://i.loli.net/2019/11/06/s5xORkGAdhWCrfc.png" alt="image.png"></p>
+<h6 id="第四步：npm-install"><a href="#第四步：npm-install" class="headerlink" title="第四步：npm install"></a>第四步：npm install</h6><p>安装必备的组件，安装完成之后，blog文件夹的目录结构大致如下：</p>
+<p><img src="https://i.loli.net/2019/11/06/mf2A9XbGHzraO3n.png" alt="image.png"></p>
+<p> <em>编译生成静态页面，会在当前目录下生成一个新的叫做public的文件夹。</em></p>
+<h6 id="第五步：hexo-g"><a href="#第五步：hexo-g" class="headerlink" title="第五步：hexo g"></a>第五步：hexo g</h6><p><img src="https://i.loli.net/2019/11/06/KfnaEztJk74RZNS.png" alt="image.png"></p>
+<p><em>启动本地服务</em></p>
+<h6 id="第六步：hexo-s"><a href="#第六步：hexo-s" class="headerlink" title="第六步：hexo s"></a>第六步：hexo s</h6><p><img src="C:%5CUsers%5CVULCAN%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573005441922.png" alt="1573005441922"></p>
+<p>打开链接<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a>，看到这样的网页就成功啦。</p>
+<h3 id="四、部署到GitHub服务器"><a href="#四、部署到GitHub服务器" class="headerlink" title="四、部署到GitHub服务器"></a>四、部署到GitHub服务器</h3><h6 id="1、使用git命令行部署（optional）"><a href="#1、使用git命令行部署（optional）" class="headerlink" title="1、使用git命令行部署（optional）"></a>1、使用git命令行部署（optional）</h6><p>  此处我们采用git命令来完成部署的工作。</p>
+<ul>
+<li><p>cd d:/hexo/blog</p>
+</li>
+<li><p>git clone  <a href="https://github.com/AAA/xxx.github.io" target="_blank" rel="noopener">https://github.com/AAA/xxx.github.io</a> .deploy/xxx.github.io</p>
+<p>注：AAA是你的Github名，xxx是你的仓库名</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2019/11/06/br9P4iHf31K2kGt.png" alt="image.png"></p>
+<p>将我们之前创建的repo克隆到本地，新建一个目录叫做.deploy用于存放克隆的代码。</p>
+<ul>
+<li><p>hexo generate  //生成静态文件</p>
+</li>
+<li><p>cp -R public/* .deploy/xxx.github.io //复制文件</p>
+</li>
+<li><p>cd .deploy/xxx.github.io //切换目录</p>
+</li>
+<li><p>git add . //将需要提交的代码添加到暂存区</p>
+</li>
+<li><p>git commit -m “update” //将暂存区内容提交给本地版本库</p>
+</li>
+<li><p>git push //推送给远程服务器</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2019/11/06/jqEo8WtbC2csS3T.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/06/iIMbqhwt2GrNmv4.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/06/KZhvNVrUceMQtbJ.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2019/11/06/rdZAkLujBDHG1Th.png" alt="image.png"></p>
+<p>简单解释一下，hexo generate生成public文件夹下的新内容，然后将其拷贝至xxx.github.io的git目录下，然后使用git commit命令提交代码到xxx.github.io这个repo的master branch上。</p>
+<p>需要部署的时候，执行第三个步骤。执行过程中可能需要让你输入Github账户的用户名及密码，按照提示操作即可。</p>
+<p>2、    验证</p>
+<p>打开浏览器，输入地址：<a href="https://fang.github.io/" target="_blank" rel="noopener">https://fang.github.io/</a> ，就可以看到我们的博客上线了哈哈哈！！！</p>
+<p><img src="https://i.loli.net/2019/11/06/Y2APhmCVfBigsjn.png" alt="image.png"></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 466623873@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>使用Github搭建个人博客</p>
+    
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="It&#39;s yours jie">It&#39;s yours jie</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-05, 20:28:36</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-06, 10:04:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/11/05/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用Github搭建个人博客">http://yoursite.com/2019/11/05/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2019 It&#39;s yours jie</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': [],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    .post {
+        background: url(https://i.loli.net/2019/11/05/G5coBXMgWQzDtnI.png);
+    }
+    
+    
+    .post.index {
+        background: url(https://i.loli.net/2019/11/05/G5coBXMgWQzDtnI.png);
+    }
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        background: url("https://i.loli.net/2019/11/05/UxQoRmCendsTBPZ.jpg");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+<div style="position:absolute; bottom: 0; right: 0;">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33418570&auto=1&height=66"></iframe>
+</div>
+
+</html>
