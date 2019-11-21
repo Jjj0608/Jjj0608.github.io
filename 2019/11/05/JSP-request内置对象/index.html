@@ -6,14 +6,14 @@
   <meta name="keywords" content="">
   <meta name="description" content="JSP request内置对象 | jer">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码 jsp九大内置对象：就是没有声明就可以使用的对象  1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。3.sess">
+<meta name="description" content="前言：response 对象是由 Tomcat 创建的，代表服务器对客户端的响应。它的继承体系和 request 对象是完全对应的，这里就不再总结了。当一次 HTTP 请求结束的时候，response 对象就会返回响应报文给客户端浏览器，浏览器收到响应报文后，就会按照响应报文的要求执行相关命令。  response 对象仅仅是设定了返回报文的控制信息而已，只有响应报文送到浏览器，由浏览器解析执行后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初识JSP">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;30&#x2F;%E5%88%9D%E8%AF%86JSP&#x2F;index.html">
+<meta property="og:title" content="JSP response内置对象">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;JSP-response%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1&#x2F;index.html">
 <meta property="og:site_name" content="jer">
-<meta property="og:description" content="Jsp:本质就是一个servlet，Java的服务端网页，我们可以在html页面写Java代码 jsp九大内置对象：就是没有声明就可以使用的对象  1234567891.request：HttpServletRequest的对象：代表客户端请求信息，用于接收http传送的服务端的请求信息。*2.response：HttpServletResponse的对象，代表客户端的响应，几乎不用。3.sess">
+<meta property="og:description" content="前言：response 对象是由 Tomcat 创建的，代表服务器对客户端的响应。它的继承体系和 request 对象是完全对应的，这里就不再总结了。当一次 HTTP 请求结束的时候，response 对象就会返回响应报文给客户端浏览器，浏览器收到响应报文后，就会按照响应报文的要求执行相关命令。  response 对象仅仅是设定了返回报文的控制信息而已，只有响应报文送到浏览器，由浏览器解析执行后">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-31T13:45:52.000Z">
+<meta property="og:updated_time" content="2019-11-05T02:19:11.409Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -149,7 +149,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(10)</small></div></li>
+    <li><div class="all active">全部文章<small>(12)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -161,7 +161,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="10">
+<input type="hidden" id="yelog_site_posts_number" value="12">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -210,43 +210,11 @@
         </a>
         
         <a  class=""
-           href="/2019/11/05/JSP-response%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="JSP response内置对象">JSP response内置对象</span>
-            <span class="post-date" title="2019-11-05 10:11:52">2019/11/05</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
-            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
-        </a>
-        
-        <a  class=""
            href="/2019/10/30/Eclipse%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="Eclipse连接MySQL数据库">Eclipse连接MySQL数据库</span>
             <span class="post-date" title="2019-10-30 18:02:31">2019/10/30</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
-            <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="初识JSP">初识JSP</span>
-            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
         </a>
         
         <a  class=""
@@ -258,6 +226,54 @@
         </a>
         
         <a  class=""
+           href="/2019/10/30/Tomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tomcat安装和配置教程">Tomcat安装和配置教程</span>
+            <span class="post-date" title="2019-10-30 18:12:07">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/21/%E5%88%9D%E8%AF%86Vue(%E4%BA%8C)%E6%95%B0%E6%8D%AE%E5%92%8C%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识Vue(二)数据和方法">初识Vue(二)数据和方法</span>
+            <span class="post-date" title="2019-11-21 18:14:19">2019/11/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/21/%E5%88%9D%E8%AF%86Vue(%E4%B8%80)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识Vue(一)">初识Vue(一)</span>
+            <span class="post-date" title="2019-11-21 17:49:10">2019/11/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/05/JSP-response%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="JSP response内置对象">JSP response内置对象</span>
+            <span class="post-date" title="2019-11-05 10:11:52">2019/11/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/30/%E5%88%9D%E8%AF%86JSP/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="初识JSP">初识JSP</span>
+            <span class="post-date" title="2019-10-30 18:52:12">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/10/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="我的第一篇博客">我的第一篇博客</span>
+            <span class="post-date" title="2019-10-10 19:57:01">2019/10/10</span>
+        </a>
+        
+        <a  class=""
            href="/2019/10/11/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"
            data-tag=""
            data-author="" >
@@ -266,19 +282,19 @@
         </a>
         
         <a  class=""
-           href="/2019/11/05/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="使用Github搭建个人博客">使用Github搭建个人博客</span>
-            <span class="post-date" title="2019-11-05 20:28:36">2019/11/05</span>
-        </a>
-        
-        <a  class=""
            href="/2019/10/30/MMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="MMySQL数据库命令大全">MMySQL数据库命令大全</span>
             <span class="post-date" title="2019-10-30 17:40:51">2019/10/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/05/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用Github搭建个人博客">使用Github搭建个人博客</span>
+            <span class="post-date" title="2019-11-05 20:28:36">2019/11/05</span>
         </a>
         
     </nav>
